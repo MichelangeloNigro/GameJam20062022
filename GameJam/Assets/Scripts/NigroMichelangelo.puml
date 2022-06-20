@@ -1,0 +1,246 @@
+@startuml
+hide empty members
+class ModeManager<<M, yellow>>{
+bool isStoryMode
+Campaign[] allCampaigns
+Campaign selectedCampaing
+}
+class Campaign<<S, violet>>{
+Card[] cards
+bool isUnlocked
+}
+class Deck{
+Card [] deck
+CreateDeck(bool IsStoryMode, Campaign campaign)
+CreateDeck()
+ShuffleDeck()
+AddCards()
+Discard()
+OnChange()
+}
+class EquipDeck{
+EquipCard head
+EquipCard body
+EquipCard hands
+EquipCard feet
+EquipCard [3] jewels
+Discard()
+CheckEquipType()
+Add()
+}
+class Card  <<S, violet>>{
+string description
+sprite img
+}
+package "Cards"{
+ 
+
+class EncounterCard<<S, violet>>{
+bool IsStoryline
+bool GemUnlocked
+bool isRisk
+bool isChoice 
+string [] choicesText
+card[]FollowUp
+RiskCard[4]
+Resolve()
+}
+class RiskCard<<S, violet>>{
+PunishmentCard[] BadFollowUp
+RewardsCard[] GoodFollowUp
+Resolve()
+}
+class PunishmentCard<<S, violet>>{
+PunishmentType punishment
+CheckTypeOfPunishment()
+}
+class RewardsCard<<S, violet>>{
+RewardType reward
+CheckTypeOfReward()
+}
+class BenedictionMaledictionCard<<S, violet>>{
+ModifierType reward
+CheckTypeOfModifier()
+
+}
+class EquipCard<<S, violet>>{
+EquipType type
+AbilitiesCard[] abilities
+
+}
+enum EquipType{
+Head,
+Body,
+Hands,
+Feet,
+Jewel
+}
+
+Class EnemyCard<<S, violet>>{
+bool isChampion
+FightingCard[] fightDeck
+TraitCard[] traits
+championBuff()
+Card[] drop
+}
+Class AbilitiesCard<<S, violet>>{
+TraitsCard[] Traits
+FightingCard[] fightingCards
+}
+class FightingCard<<S, violet>>{
+DistanceType attack
+DistanceType defense
+int  dmg
+int  def
+int  Heal
+}
+class TraitCard<<S, violet>>{
+TraitType trait
+CheckTypeOfTrait
+}
+
+enum DistanceType{
+Melee,
+Distance
+}
+enum PunishmentType{
+Discard
+LoseResources
+...
+}
+enum RewardType{
+Draw
+AddResources
+...
+}
+enum ModifierType{
+MoreFuelPerMovement
+GainLife
+...
+}
+enum TraitType{
+MoreDmg
+LessDefense
+...
+}
+
+note left of ModifierType
+example
+end note
+note left of TraitType
+example
+end note
+note left of RewardType
+example
+end note
+note left of PunishmentType
+example
+end note
+
+}
+
+package "Character"{
+class Resource{
+int fuel
+int quid
+int pf
+}
+class Character{
+Resource resource
+EquipDeck equip
+---
+Deck Modifiers
+Deck currentAbilities
+Deck FightingDeck
+Deck Traits
+---
+Move(int modifier)
+}
+}
+
+class TurnManager <<M, yellow>> {
+Character char
+EnemyCard enemy
+CheckDeath()
+MakeTurn()
+EnemyDraw()
+StartFight()
+}
+class RunManager <<M, yellow>>{
+Deck allEncounters
+DrawMap()
+RevealEncounter()
+EncounterCard [][] currentMap
+startRun()
+}
+class UiManager <<M, yellow>>{
+sprite[] img
+canvas pauseCanvas
+canvas characterStats
+string[] texts
+drawScreen()
+PauseON/OFF()
+StatsON/OFF()
+} 
+
+class SaveManager <<M, yellow>>{
+EncounterCard[] encountersUnlocked
+AddToUnlockedEncounters()
+Load()
+int HighestScore
+Campaign unlockedCampaign
+}
+
+class GameManager <<M, yellow>>{
+EncounterCard SpacePirate
+checkFuel()
+callSpacePirate()
+CheckWin()
+Save()
+UploadHIghestScore()
+}
+note right of TurnManager::enemy
+fed from run manager
+end note
+
+FightingCard-- DistanceType
+EquipCard-- EquipType
+PunishmentCard-- PunishmentType
+RewardsCard-- RewardType
+BenedictionMaledictionCard-- ModifierType
+Deck*-left- "Cards"
+Deck-o RunManager
+Deck-up-o Character
+EquipDeck-down- Character
+TraitCard-- TraitType
+EncounterCard o--"...4" RiskCard
+AbilitiesCard o-- FightingCard
+AbilitiesCard o-- TraitCard
+EnemyCard o-- TraitCard
+EnemyCard o-- FightingCard
+Card--|> "Cards"
+EncounterCard o-- Card
+GameManager-- Character
+Resource-right- Character
+ModeManager- Campaign
+RunManager-- ModeManager
+GameManager-- SaveManager
+RunManager-- UiManager
+RunManager-- TurnManager
+SaveManager-- Campaign
+SaveManager-- RunManager
+RunManager-- EncounterCard
+TurnManager-- Character
+
+
+
+@enduml
+
+- <<S, violet>> per gli scriptable object 
+- <<M, yellow>> per i monobehaviour 
+
+note::
+
+La classe run manager al start run prende le carte sbloccate, fa scegliere gli encounter e builda di conseguenza il mazzo
+run manager al reveal della encounter fa partire il resolve della classe che nel caso serva puo' prendere uimanager e turnmanager per i combattimenti
+gli enum di tipo type sono degli esempi, nello scriptable a loro collegato ci sara uno switch dentro la funzione che fa agire di conseguneza la carta

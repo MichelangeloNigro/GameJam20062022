@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class GeneralCard<<S, violet>>{
+Action OnUse
+Action OnSelected
+Sprite image
+Text description
+Text Name
+
+}
+
+class attackCard<<S, violet>>{
+int damage
+}
+class DefenseCard<<S, violet>>{
+
+}
+class BuffCard<<S, violet>>{
+
+}
+class HealCard<<S, violet>>{
+int ammount
+}
+
+class CardSpecific<<S, violet>>{
+OnUse()
+}
+
+
+
+GeneralCard-- attackCard
+GeneralCard-- DefenseCard
+GeneralCard-- BuffCard
+GeneralCard-- HealCard
+HealCard-- CardSpecific
+BuffCard-- CardSpecific
+DefenseCard-- CardSpecific
+attackCard-- CardSpecific
+
+@enduml
