@@ -62,6 +62,7 @@ public class TurnManager : MonoBehaviour {
         actor.OnCardSelected += OnCardSelected;
         actor.OnTargetSelected += OnTargetSelected;
         actor.OnDeath += OnActorDeath;
+        actor.OnFinishedTurn += PassTurn;
         OnActorSubscribed?.Invoke(actor);
     }
     
@@ -81,7 +82,6 @@ public class TurnManager : MonoBehaviour {
     private void OnTargetSelected(ActorWorld chooser, ActorWorld target) {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
             OnTargetSuccessfullySelected?.Invoke(chooser, target);
-            PassTurn();
         }
     }
 
@@ -109,7 +109,6 @@ public class TurnManager : MonoBehaviour {
         }
         else {
             StartCoroutine(FadeManager.Instance.ReloadScene());
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if (enemies.Count == 0) {

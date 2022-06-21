@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3629359, g: 0.56619257, b: 0.8437096, a: 1}
+  m_IndirectSpecularColor: {r: 0.52512664, g: 0.5798293, b: 0.7817087, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &3547258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3547259}
+  m_Layer: 0
+  m_Name: SpawnPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3547259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547258}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 7.38, y: 0, z: -2.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1577410946}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &166998051
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,8 +522,10 @@ MonoBehaviour:
   playerSpawnPoint: {fileID: 603092222}
   enemies:
   - {fileID: 11400000, guid: 8a71ccfcbaccc0d4ba261bbdb268279f, type: 2}
+  - {fileID: 11400000, guid: 8a71ccfcbaccc0d4ba261bbdb268279f, type: 2}
   spawnPoints:
   - {fileID: 476943581}
+  - {fileID: 3547259}
   tileManager: {fileID: 2119647366}
 --- !u!4 &844281846
 Transform:
@@ -893,6 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c398f373d647a784597b00d122a381aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 0}
 --- !u!1 &1239349629
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1032,7 @@ Transform:
   m_Children:
   - {fileID: 603092222}
   - {fileID: 476943581}
+  - {fileID: 3547259}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

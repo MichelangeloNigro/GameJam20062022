@@ -6,5 +6,5 @@ public abstract class HealthCard : GeneralCard {
   private void Cure() {
     //player.health += amount;
   }
-  public override void Use(){}
+  public override void Use(ActorWorld chooser, ActorWorld target){}
 }

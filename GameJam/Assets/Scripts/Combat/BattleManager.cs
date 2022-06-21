@@ -25,11 +25,7 @@ public class BattleManager : MonoBehaviour
 	}
 
 	private void Act() {
-		target.ModifyHealth(-5);
-		var anim = target.GetComponent<Animator>();
-		if (anim == null) {
-			 anim = target.GetComponentInChildren<Animator>();
-		}
-		anim.SetTrigger("shooting");
+		target.ModifyHealth(-1);
+		chooser.animator.SetTrigger("shooting");
 	}
 }
