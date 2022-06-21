@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0fc2d7f26c3ae428e2d66fbf22225a, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  baseHealth: 5
+  baseHealth: 10
   actorPrefab: {fileID: 4993806424903360526, guid: e07af47e3136a6a44bc4d76625411093, type: 3}
