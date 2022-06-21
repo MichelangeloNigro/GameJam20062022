@@ -42,9 +42,9 @@ public class TileManager : MonoBehaviour {
 
    private IEnumerator MoveTileManager() {
       var finalPosition = transform.position;
-      finalPosition.x -= shiftXtile;
+      finalPosition.x -= shiftXtile+0.5f;
       var t = 0f;
-      while (transform.position.x>finalPosition.x+0.2f) {
+      while (transform.position.x>finalPosition.x+0.05f) {
          transform.position= Vector3.Lerp(transform.position,finalPosition,t/timerLerp);
          t += Time.deltaTime;
          yield return null;
