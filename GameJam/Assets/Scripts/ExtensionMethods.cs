@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class ExtensionMethods
@@ -11,4 +9,11 @@ public static class ExtensionMethods
             }
             return transform;
         }
+
+    public static int Cycle(int number, int minInclusive, int maxExclusive) {
+        if (number >= maxExclusive) {
+            return minInclusive;
+        }
+        return number;
+    }
 }
