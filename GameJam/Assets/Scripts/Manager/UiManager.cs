@@ -13,7 +13,10 @@ public class UiManager : SingletonDDOL<UiManager> {
   public Button currentCategory;
   public GameObject deckSelectionContent;
   public GameObject deckSelectedContent;
+  public GameObject handContent;
   public TMP_Text deckCardsNumber;
+  public TMP_Text deckCardsRemaning;
+  public GameObject gameplayUi;
   
   public void changeCategoryCards() {
     currentCategory.interactable = true;
@@ -27,8 +30,13 @@ public class UiManager : SingletonDDOL<UiManager> {
      }
   }
 
+  public void DoneWithDeckBuild() {
+    gameplayUi.SetActive(true);
+    CardManager.Instance.getHand();
+  }
   private void Update() {
     deckCardsNumber.text = $"{CardManager.Instance.Deck.Count}/{CardManager.Instance.maxNumberOfCard}";
+    deckCardsRemaning.text = $"{CardManager.Instance.DeckChangable.Count}/{CardManager.Instance.Deck.Count}";
   }
 
   public void ChangeCurrentCategory() {

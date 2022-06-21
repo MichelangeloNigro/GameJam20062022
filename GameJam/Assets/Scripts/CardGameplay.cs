@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardGameplay : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class CardGameplay : MonoBehaviour {
+  public GeneralCard card;
+  public void OnClick() {
+    card.Use();
+    Destroy(this.gameObject);
+  }
 }
