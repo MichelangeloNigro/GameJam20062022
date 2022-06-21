@@ -34,7 +34,7 @@ public class CardGameplay : MonoBehaviour {
     image.sprite = card.image;
   }
   public void OnClick() {
-    card.Use();
+    //card.Use();
     Destroy(this.gameObject);
   }
 }
