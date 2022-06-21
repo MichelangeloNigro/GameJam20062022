@@ -1,10 +1,13 @@
 using System;
+using BehaviorDesigner.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ActorWorld : MonoBehaviour {
     [SerializeField, ReadOnly] private float maxHealth;
     [SerializeField, ReadOnly] private float currentHealth;
+
+    private BehaviorTree behaviorTree;
 
     public Action<ActorWorld> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;
@@ -15,7 +18,13 @@ public class ActorWorld : MonoBehaviour {
     public void Init(Actor actor) {
         maxHealth = actor.baseHealth;
         currentHealth = actor.baseHealth;
+        behaviorTree = GetComponent<BehaviorTree>();
         TurnManager.Instance.Subscribe(this);
+        TurnManager.Instance.OnTurnPassed += ExecuteBehavior;
+    }
+
+    private void OnDisable() {
+        TurnManager.Instance.OnTurnPassed -= ExecuteBehavior;
     }
 
     public void SelectCard() {
@@ -28,6 +37,12 @@ public class ActorWorld : MonoBehaviour {
 
     private void OnMouseDown() {
         TurnManager.Instance.PlayerActor.SelectTarget(this);        
+    }
+
+    private void ExecuteBehavior(ActorWorld actorWorld) {
+        if (this == actorWorld) {
+            behaviorTree.EnableBehavior();
+        }
     }
     
     #endregion

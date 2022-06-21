@@ -18,9 +18,13 @@ public class TurnManager : MonoBehaviour {
     public Action<ActorWorld> OnActorSubscribed;
     public Action OnCardSuccessfullySelected;
     public Action<ActorWorld, ActorWorld> OnTargetSuccessfullySelected;
+    public Action<ActorWorld> OnTurnPassed;
 
     private List<ActorWorld> actors = new();
     
+    private List<ActorWorld> enemies = new();
+    public List<ActorWorld> Enemies => enemies;
+
     private ActorWorld currentActor;
     private int currentIndex;
     
@@ -39,6 +43,9 @@ public class TurnManager : MonoBehaviour {
     public void Subscribe(ActorWorld actor) {
         if (actors.Count == 0) {
             playerActor = actor;
+        }
+        else {
+            enemies.Add(actor);
         }
         actors.Add(actor);
         actor.OnCardSelected += OnCardSelected;
@@ -71,6 +78,9 @@ public class TurnManager : MonoBehaviour {
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
         turnPhase = TurnPhase.CardSelection;
+        if (currentActor != playerActor) {
+            OnTurnPassed?.Invoke(currentActor);
+        }
     }
 
     private void OnActorDeath(ActorWorld actor) {
@@ -82,5 +92,8 @@ public class TurnManager : MonoBehaviour {
         actor.OnTargetSelected -= OnTargetSelected;
         actor.OnDeath -= OnActorDeath;
         actors.Remove(actor);
+        if (actor != playerActor) {
+            enemies.Remove(actor);
+        }
     }
 }
