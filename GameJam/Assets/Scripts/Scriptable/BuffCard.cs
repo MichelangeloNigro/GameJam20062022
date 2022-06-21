@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class BuffCard : GeneralCard
-{
-   
+[CreateAssetMenu(menuName = "ScriptableObjects/Card/BuffCard")]
+public abstract class BuffCard : GeneralCard {
+   public override void Use(){}
 }
