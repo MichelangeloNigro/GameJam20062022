@@ -20,7 +20,7 @@ public abstract class GeneralCard : ScriptableObject {
 	public CardType type;
 	[NonSerialized] public int quantityInDeck;
 	public int quantityUnlocked;
-
+	public int maximumOwned;
 	public virtual void Use(ActorWorld chooser, ActorWorld target) {
 		chooser.GetComponent<Animator>();
 	}

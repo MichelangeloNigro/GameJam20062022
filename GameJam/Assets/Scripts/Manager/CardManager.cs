@@ -63,7 +63,7 @@ public class CardManager : SingletonDDOL<CardManager> {
     }
 
     public void draw() {
-        if (DeckChangable.Count>0) {
+        if (DeckChangable.Count>0&& Hand.Count<=cardInHand) {
             int temp = Random.Range(0, DeckChangable.Count);
             var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
             tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];

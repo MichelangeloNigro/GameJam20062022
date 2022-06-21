@@ -8,5 +8,6 @@ public class GameManager : SingletonDDOL<GameManager> {
     public GameObject cardPrefab;
     public GameObject cardGameplayPrefab;
     public GameObject deckButtonPrefab;
+    public int money;
 
 }

@@ -26,7 +26,7 @@ public class UiManager : SingletonDDOL<UiManager> {
      foreach (var VARIABLE in GameManager.Instance.unlockedCards) {
        if (VARIABLE.type==go.GetComponent<CardTypeHolder>().type&& VARIABLE.quantityInDeck<=VARIABLE.quantityUnlocked) {
          var temp=GameObject.Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
-         temp.GetComponent<CardReferenceHolder>().cardData = VARIABLE;
+         temp.GetComponent<CardReferenceHolder>().card = VARIABLE;
        }
      }
   }
