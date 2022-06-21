@@ -1,21 +1,23 @@
 using System;
 using System.Collections.Generic;
-using Riutilizzabile;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class TurnManager : SingletonDDOL<TurnManager> {
+public class TurnManager : MonoBehaviour {
     private enum TurnPhase {
         NotInBattle,
         CardSelection,
         TargetSelection
     }
 
-    [SerializeField, ReadOnly] private TurnPhase turnPhase;
+    public static TurnManager Instance;
 
-    private Action<ActorWorld> OnActorSubscribed;
-    private Action OnCardSuccessfullySelected;
-    private Action<ActorWorld> OnTargetSuccessfullySelected;
+    [SerializeField, ReadOnly] private TurnPhase turnPhase;
+    [SerializeField] private BattleManager battleManager;
+
+    public Action<ActorWorld> OnActorSubscribed;
+    public Action OnCardSuccessfullySelected;
+    public Action<ActorWorld, ActorWorld> OnTargetSuccessfullySelected;
 
     private List<ActorWorld> actors = new();
     
@@ -24,6 +26,11 @@ public class TurnManager : SingletonDDOL<TurnManager> {
     
     private ActorWorld playerActor;
     public ActorWorld PlayerActor => playerActor;
+
+    private void Awake() {
+        Instance = this;
+        battleManager.Init();
+    }
 
     private void Start() {
         Invoke(nameof(StartBattle), 1);
@@ -55,7 +62,7 @@ public class TurnManager : SingletonDDOL<TurnManager> {
 
     private void OnTargetSelected(ActorWorld chooser, ActorWorld target) {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
-            OnTargetSuccessfullySelected?.Invoke(target);
+            OnTargetSuccessfullySelected?.Invoke(chooser, target);
             PassTurn();
         }
     }
@@ -71,6 +78,9 @@ public class TurnManager : SingletonDDOL<TurnManager> {
         if (currentIndex >= actorIndex) {
             currentIndex = Mathf.Clamp(currentIndex - 1, 0, actors.Count - 1);
         }
+        actor.OnCardSelected -= OnCardSelected;
+        actor.OnTargetSelected -= OnTargetSelected;
+        actor.OnDeath -= OnActorDeath;
         actors.Remove(actor);
     }
 }
