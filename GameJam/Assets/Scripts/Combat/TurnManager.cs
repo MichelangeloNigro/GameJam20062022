@@ -14,11 +14,13 @@ public class TurnManager : MonoBehaviour {
 
     [SerializeField, ReadOnly] private TurnPhase turnPhase;
     [SerializeField] private BattleManager battleManager;
+    [SerializeField] private TileManager tileManager;
 
     public Action<ActorWorld> OnActorSubscribed;
     public Action OnCardSuccessfullySelected;
     public Action<ActorWorld, ActorWorld> OnTargetSuccessfullySelected;
     public Action<ActorWorld> OnTurnPassed;
+    public Action OnFinishCombat;
 
     private List<ActorWorld> actors = new();
     
@@ -34,6 +36,14 @@ public class TurnManager : MonoBehaviour {
     private void Awake() {
         Instance = this;
         battleManager.Init();
+    }
+
+    private void OnEnable() {
+        tileManager.OnFinishRunning += StartBattle;
+    }
+
+    private void OnDisable() {
+        tileManager.OnFinishRunning -= StartBattle;
     }
 
     private void Start() {
@@ -94,6 +104,11 @@ public class TurnManager : MonoBehaviour {
         actors.Remove(actor);
         if (actor != playerActor) {
             enemies.Remove(actor);
+            Destroy(actor.gameObject);
+        }
+
+        if (enemies.Count == 0) {
+            OnFinishCombat?.Invoke();
         }
     }
 }

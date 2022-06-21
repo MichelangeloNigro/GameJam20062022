@@ -1,15 +1,26 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class SpawnManager : MonoBehaviour {
     [SerializeField] private Actor player;
     [SerializeField] private Transform playerSpawnPoint;
-    [FormerlySerializedAs("actors"), SerializeField] private Actor[] enemies;
+    [SerializeField] private Actor[] enemies;
     [SerializeField] private Transform[] spawnPoints;
+
+    [SerializeField] private TileManager tileManager;
 
     private void Start() {
         SpawnPlayer();
         SpawnEnemies();
+    }
+
+    private void OnEnable() {
+        tileManager.OnFinishRunning += SpawnEnemies;
+    }
+
+    private void OnDisable() {
+        tileManager.OnFinishRunning -= SpawnEnemies;
     }
 
     private void SpawnPlayer() {
