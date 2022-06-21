@@ -1,12 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Net;
 using Riutilizzabile;
 using UnityEngine;
 
 public class CardManager : SingletonDDOL<CardManager> {
-    public List<GeneralCard> Deck;
-    public  int maxNumberOfCard=10;
+    public List<GeneralCard> Deck=new List<GeneralCard>();
+    public List<GeneralCard> DeckChangable=new List<GeneralCard>();
+    public List<GeneralCard> Hand=new List<GeneralCard>();
+    public  int maxNumberOfCard=30;
+    public int cardInHand=5;
+    
     public const int maxNumberOfAttackCard=10;
     public const int maxNumberOfDefenseCard=10;
     public const int maxNumberOfHealthCard=10;
@@ -48,5 +50,23 @@ public class CardManager : SingletonDDOL<CardManager> {
             return false;
         }
         return numberOfBuffCard < maxNumberOfBuffCard;
+    }
+
+    public void getHand() {
+        for (int i = 0; i < cardInHand; i++) {
+            int temp = Random.Range(0, DeckChangable.Count);
+            var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardPrefab,UiManager.Instance.handContent.transform);
+            tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
+            Hand.Add(DeckChangable[temp]);
+            DeckChangable.Remove(DeckChangable[temp]);
+        }
+    }
+
+    public void draw() {
+        int temp = Random.Range(0, DeckChangable.Count);
+        var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardPrefab,UiManager.Instance.handContent.transform);
+        tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
+        Hand.Add(DeckChangable[temp]);
+        DeckChangable.Remove(DeckChangable[temp]);
     }
 }
