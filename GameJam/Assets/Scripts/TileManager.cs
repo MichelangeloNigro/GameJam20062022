@@ -9,6 +9,7 @@ public class TileManager : MonoBehaviour {
    public List<GameObject> possibleScenarios;
    private Destroyer destroyer;
    [SerializeField] private  float shiftXtile=25;
+   [SerializeField] private float timerLerp;
 
    private void Start() {
       destroyer = FindObjectOfType<Destroyer>();
@@ -29,6 +30,26 @@ public class TileManager : MonoBehaviour {
       position.x += shiftXtile;
       var newTile= Instantiate(possibleScenarios[index], position, Quaternion.identity, transform);
       currentTiles.Add(newTile);
+   }
+
+
+
+   public void MoveTiles() {
+
+      StartCoroutine(MoveTileManager());
+   }
+
+
+   private IEnumerator MoveTileManager() {
+      var finalPosition = transform.position;
+      finalPosition.x -= shiftXtile;
+      var t = 0f;
+      while (transform.position.x>finalPosition.x+0.2f) {
+         transform.position= Vector3.Lerp(transform.position,finalPosition,t/timerLerp);
+         t += Time.deltaTime;
+         yield return null;
+      }
+
    }
 
 }
