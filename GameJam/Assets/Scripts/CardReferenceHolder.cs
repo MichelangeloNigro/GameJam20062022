@@ -44,7 +44,7 @@ public class CardReferenceHolder : MonoBehaviour {
 			
 		}
 		else {
-			Destroy(this.gameObject);
+			GetComponent<Button>().interactable = false;
 		}
 		
 	}

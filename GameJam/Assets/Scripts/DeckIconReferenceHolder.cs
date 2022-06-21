@@ -9,7 +9,7 @@ public class DeckIconReferenceHolder : MonoBehaviour {
 	public TMP_Text name;
 	public TMP_Text quantity;
 
-	private void Start() {
+	private void Update() {
 		name.text = card.cardName;
 		quantity.text = $"X {card.quantityInDeck}";
 	}

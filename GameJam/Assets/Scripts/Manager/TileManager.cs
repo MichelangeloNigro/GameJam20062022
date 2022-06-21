@@ -12,12 +12,21 @@ public class TileManager : MonoBehaviour {
    [SerializeField] private  float shiftXtile=25;
    [SerializeField] private float timerLerp;
 
+   public Action OnFinishRunning;
+
    private void Start() {
       destroyer = FindObjectOfType<Destroyer>();
       playerAnimator = FindObjectOfType<PlayerAnimator>();
       destroyer.hasDestoyed += DestroyTile;
       destroyer.hasDestoyed += SpawnNewTile;
+      TurnManager.Instance.OnActorSubscribed += SavePlayerAnimator;
+      TurnManager.Instance.OnFinishCombat += MoveTiles;
+   }
 
+   private void SavePlayerAnimator(ActorWorld actor) {
+      if (actor == TurnManager.Instance.PlayerActor) {
+         playerAnimator = actor.GetComponent<PlayerAnimator>();
+      }
    }
 
    private void DestroyTile() {
@@ -52,7 +61,7 @@ public class TileManager : MonoBehaviour {
          yield return null;
       }
       playerAnimator.StopRunning();
-
+      OnFinishRunning?.Invoke();
    }
 
 }
