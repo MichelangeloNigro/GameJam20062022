@@ -17,4 +17,7 @@ public abstract class GeneralCard : ScriptableObject {
 	private Text description;
 	private Text cardName;
 	private CardType type;
+
+	public abstract void Use();
+
 }

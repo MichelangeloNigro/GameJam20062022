@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DefenseCard : GeneralCard
+[CreateAssetMenu(menuName = "ScriptableObjects/Card/DefenseCard")]
+public abstract class DefenseCard : GeneralCard
 {
-   
+	public override void Use(){}
 }
