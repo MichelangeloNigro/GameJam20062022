@@ -16,9 +16,4 @@ public class PlayerChoiceModel : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
