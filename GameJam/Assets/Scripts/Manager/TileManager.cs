@@ -44,7 +44,7 @@ public class TileManager : MonoBehaviour {
 
    private IEnumerator MoveTileManager() {
       var finalPosition = transform.position;
-      finalPosition.x -= shiftXtile+0.5f;
+      finalPosition.x -= shiftXtile;
       var t = 0f;
       while (transform.position.x>finalPosition.x+0.05f) {
          transform.position= Vector3.Lerp(transform.position,finalPosition,t/timerLerp);
