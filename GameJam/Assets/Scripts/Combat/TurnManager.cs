@@ -108,7 +108,8 @@ public class TurnManager : MonoBehaviour {
             Destroy(actor.gameObject);
         }
         else {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(FadeManager.Instance.ReloadScene());
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if (enemies.Count == 0) {
