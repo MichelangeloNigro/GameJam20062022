@@ -6,6 +6,6 @@ public class CardWorld : MonoBehaviour {
     public GeneralCard card;
     
     public void Select() {
-        TurnManager.Instance.PlayerActor.SelectCard();
+        //TurnManager.Instance.PlayerActor.SelectCard();
     }
 }

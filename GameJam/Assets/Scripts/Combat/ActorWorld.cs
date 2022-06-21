@@ -9,7 +9,7 @@ public class ActorWorld : MonoBehaviour {
 
     private BehaviorTree behaviorTree;
 
-    public Action<ActorWorld> OnCardSelected;
+    public Action<ActorWorld, GeneralCard> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;
     public Action<ActorWorld> OnDeath;
     public Action OnFinishedTurn;
@@ -34,8 +34,8 @@ public class ActorWorld : MonoBehaviour {
         TurnManager.Instance.OnTurnPassed -= ExecuteBehavior;
     }
 
-    public void SelectCard() {
-        OnCardSelected?.Invoke(this);
+    public void SelectCard(GeneralCard card) {
+        OnCardSelected?.Invoke(this, card);
     }
 
     public void SelectTarget(ActorWorld actor) {

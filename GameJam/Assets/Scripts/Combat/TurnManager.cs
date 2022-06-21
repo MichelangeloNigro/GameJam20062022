@@ -18,7 +18,7 @@ public class TurnManager : MonoBehaviour {
     [SerializeField] private TileManager tileManager;
 
     public Action<ActorWorld> OnActorSubscribed;
-    public Action OnCardSuccessfullySelected;
+    public Action<GeneralCard> OnCardSuccessfullySelected;
     public Action<ActorWorld, ActorWorld> OnTargetSuccessfullySelected;
     public Action<ActorWorld> OnTurnPassed;
     public Action OnFinishCombat;
@@ -72,10 +72,10 @@ public class TurnManager : MonoBehaviour {
         turnPhase = TurnPhase.CardSelection;
     }
 
-    private void OnCardSelected(ActorWorld actor) {
+    private void OnCardSelected(ActorWorld actor, GeneralCard card) {
         if (turnPhase == TurnPhase.CardSelection && actor == currentActor) {
             turnPhase = TurnPhase.TargetSelection;
-            OnCardSuccessfullySelected?.Invoke();
+            OnCardSuccessfullySelected?.Invoke(card);
         }
     }
 

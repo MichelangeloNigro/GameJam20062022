@@ -9,7 +9,7 @@ public class SelectRandomCardAction : Action {
 
 	public override TaskStatus OnUpdate()
 	{
-		actorWorld.SelectCard();
+		//actorWorld.SelectCard();
 		return TaskStatus.Success;
 	}
 }
