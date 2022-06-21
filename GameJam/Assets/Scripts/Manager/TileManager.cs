@@ -8,11 +8,13 @@ public class TileManager : MonoBehaviour {
    public List<GameObject> currentTiles;
    public List<GameObject> possibleScenarios;
    private Destroyer destroyer;
+   private PlayerAnimator playerAnimator;
    [SerializeField] private  float shiftXtile=25;
    [SerializeField] private float timerLerp;
 
    private void Start() {
       destroyer = FindObjectOfType<Destroyer>();
+      playerAnimator = FindObjectOfType<PlayerAnimator>();
       destroyer.hasDestoyed += DestroyTile;
       destroyer.hasDestoyed += SpawnNewTile;
 
@@ -35,7 +37,7 @@ public class TileManager : MonoBehaviour {
 
 
    public void MoveTiles() {
-
+      playerAnimator.StartRunning();
       StartCoroutine(MoveTileManager());
    }
 
@@ -49,6 +51,7 @@ public class TileManager : MonoBehaviour {
          t += Time.deltaTime;
          yield return null;
       }
+      playerAnimator.StopRunning();
 
    }
 
