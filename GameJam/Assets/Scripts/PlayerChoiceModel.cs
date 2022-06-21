@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerChoiceModel : MonoBehaviour {
 
     public List<GameObject> playerModels;
-    // Start is called before the first frame update
+    
     void Start()
     {
         foreach (var model in playerModels) {
@@ -15,5 +14,4 @@ public class PlayerChoiceModel : MonoBehaviour {
         playerModels[index].SetActive(true);
 
     }
-
 }

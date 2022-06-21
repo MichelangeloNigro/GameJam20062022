@@ -21,6 +21,8 @@ public abstract class GeneralCard : ScriptableObject {
 	[NonSerialized] public int quantityInDeck;
 	public int quantityUnlocked;
 
-	public abstract void Use();
+	public virtual void Use(ActorWorld chooser, ActorWorld target) {
+		chooser.GetComponent<Animator>();
+	}
 
 }

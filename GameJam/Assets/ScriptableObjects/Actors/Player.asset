@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   baseHealth: 10
-  actorPrefab: {fileID: 4993806424903360526, guid: e07af47e3136a6a44bc4d76625411093, type: 3}
+  actorPrefab: {fileID: 8098276478945394542, guid: 8302d343e7042924ba294cb67e62a605, type: 3}

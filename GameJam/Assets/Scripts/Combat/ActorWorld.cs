@@ -12,7 +12,14 @@ public class ActorWorld : MonoBehaviour {
     public Action<ActorWorld> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;
     public Action<ActorWorld> OnDeath;
-    
+    public Action OnFinishedTurn;
+
+    [NonSerialized] public Animator animator;
+
+    private void Awake() {
+        animator = GetComponent<Animator>();
+    }
+
     #region Turn Related Methods
     
     public void Init(Actor actor) {
@@ -43,6 +50,10 @@ public class ActorWorld : MonoBehaviour {
         if (this == actorWorld) {
             behaviorTree.EnableBehavior();
         }
+    }
+    
+    public void FinishTurn() {
+        OnFinishedTurn?.Invoke();
     }
     
     #endregion
