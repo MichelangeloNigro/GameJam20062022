@@ -17,6 +17,7 @@ public class UiManager : SingletonDDOL<UiManager> {
   public TMP_Text deckCardsNumber;
   public TMP_Text deckCardsRemaning;
   public GameObject gameplayUi;
+  public GameObject deckBuild;
   
   public void changeCategoryCards() {
     currentCategory.interactable = true;
@@ -32,6 +33,10 @@ public class UiManager : SingletonDDOL<UiManager> {
 
   public void DoneWithDeckBuild() {
     gameplayUi.SetActive(true);
+    deckBuild.SetActive(false);
+    foreach (var VARIABLE in CardManager.Instance.Deck) {
+      CardManager.Instance.DeckChangable.Add(VARIABLE);
+    }
     CardManager.Instance.getHand();
   }
   private void Update() {
