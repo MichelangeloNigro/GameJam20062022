@@ -5,8 +5,6 @@ using Riutilizzabile;
 using UnityEngine;
 
 public class CardManager : SingletonDDOL<CardManager> {
-    public CardManager instance;
-
     public List<GeneralCard> Deck;
     private const int maxNumberOfCard=10;
     private const int maxNumberOfAttackCard=10;

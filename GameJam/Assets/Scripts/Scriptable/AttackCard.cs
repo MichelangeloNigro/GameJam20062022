@@ -1,8 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Card/AttackCard")]
 public abstract class AttackCard : GeneralCard {
-    [SerializeField] private int damage;
+    [SerializeField] protected int damage;
     //enemy
     private void OnAttack( /*enemy*/) {
 	    //enemy.health -= damage;

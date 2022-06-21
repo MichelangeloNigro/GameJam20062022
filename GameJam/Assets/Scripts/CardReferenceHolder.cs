@@ -34,14 +34,18 @@ public class CardReferenceHolder : MonoBehaviour {
 	}
 
 	public void OnCardClick() {
+		if (cardData.quantityInDeck==0) {
+			CardManager.Instance.Deck.Add(cardData);
+			var temp=GameObject.Instantiate(GameManager.Instance.deckButtonPrefab,UiManager.Instance.deckSelectedContent.transform);
+			temp.GetComponent<DeckIconReferenceHolder>().card = cardData;
+		}
+		cardData.quantityInDeck++;
 		if (cardData.quantityInDeck+1<cardData.quantityUnlocked) {
-			//add to deck
+			
 		}
 		else {
-			//add to deck
 			Destroy(this.gameObject);
 		}
 		
-		cardData.quantityInDeck++;
 	}
 }

@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Card/HealthCard")]
 public abstract class HealthCard : GeneralCard {
   [SerializeField] private int amount;
 

@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Riutilizzabile;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UiManager : MonoBehaviour {
+public class UiManager : SingletonDDOL<UiManager> {
   public Image life;
   public Button currentCategory;
   public GameObject deckSelectionContent;
+  public GameObject deckSelectedContent;
   
   public void changeCategoryCards() {
     currentCategory.interactable = true;
     deckSelectionContent.transform.Clear();
     var go = EventSystem.current.currentSelectedGameObject;
      foreach (var VARIABLE in GameManager.Instance.unlockedCards) {
-       if (VARIABLE.type==go.GetComponent<CardTypeHolder>().type&& VARIABLE.quantityInDeck<VARIABLE.quantityUnlocked) {
+       if (VARIABLE.type==go.GetComponent<CardTypeHolder>().type&& VARIABLE.quantityInDeck<=VARIABLE.quantityUnlocked) {
          var temp=GameObject.Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
          temp.GetComponent<CardReferenceHolder>().cardData = VARIABLE;
        }
@@ -24,11 +26,7 @@ public class UiManager : MonoBehaviour {
 
 
 
-  public void OnCardBack() {
-    //set back in selectable card
-    //remove from deck
-    //update deck number
-  }
+  
   public void ChangeCurrentCategory() {
     currentCategory = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
     currentCategory.interactable = false;

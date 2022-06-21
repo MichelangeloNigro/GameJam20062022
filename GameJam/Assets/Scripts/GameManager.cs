@@ -6,5 +6,6 @@ using UnityEngine;
 public class GameManager : SingletonDDOL<GameManager> {
     public List<GeneralCard> unlockedCards;
     public GameObject cardPrefab;
+    public GameObject deckButtonPrefab;
 
 }
