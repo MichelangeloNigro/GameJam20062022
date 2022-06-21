@@ -4,7 +4,7 @@ using Riutilizzabile;
 using UnityEngine;
 
 public class GameManager : SingletonDDOL<GameManager> {
-    public List<GameObject> unlockedCards;
+    public List<GeneralCard> unlockedCards;
     public GameObject cardPrefab;
 
 }

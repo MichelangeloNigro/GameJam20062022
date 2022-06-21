@@ -14,21 +14,15 @@ public class UiManager : MonoBehaviour {
     currentCategory.interactable = true;
     deckSelectionContent.transform.Clear();
     var go = EventSystem.current.currentSelectedGameObject;
-    // foreach (var VARIABLE in GameManager.Instance.unlockedCards) {
-    //   if (VARIABLE) {
-    //     var temp=GameObject.Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
-    //     //temp.type == VARIABLE;
-    //   }
-    // }
-    //spawncards
-
+     foreach (var VARIABLE in GameManager.Instance.unlockedCards) {
+       if (VARIABLE.type==go.GetComponent<CardTypeHolder>().type&& VARIABLE.quantityInDeck<VARIABLE.quantityUnlocked) {
+         var temp=GameObject.Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
+         temp.GetComponent<CardReferenceHolder>().cardData = VARIABLE;
+       }
+     }
   }
 
-  public void OnCardClick() {
-    //check quantity
-    //add to deck
-    //update deck number
-  }
+
 
   public void OnCardBack() {
     //set back in selectable card
