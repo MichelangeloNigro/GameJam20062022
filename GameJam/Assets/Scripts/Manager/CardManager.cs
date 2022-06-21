@@ -55,7 +55,7 @@ public class CardManager : SingletonDDOL<CardManager> {
     public void getHand() {
         for (int i = 0; i < cardInHand; i++) {
             int temp = Random.Range(0, DeckChangable.Count);
-            var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardPrefab,UiManager.Instance.handContent.transform);
+            var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
             tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
             Hand.Add(DeckChangable[temp]);
             DeckChangable.Remove(DeckChangable[temp]);
@@ -63,10 +63,12 @@ public class CardManager : SingletonDDOL<CardManager> {
     }
 
     public void draw() {
-        int temp = Random.Range(0, DeckChangable.Count);
-        var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardPrefab,UiManager.Instance.handContent.transform);
-        tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
-        Hand.Add(DeckChangable[temp]);
-        DeckChangable.Remove(DeckChangable[temp]);
+        if (DeckChangable.Count>0) {
+            int temp = Random.Range(0, DeckChangable.Count);
+            var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
+            tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
+            Hand.Add(DeckChangable[temp]);
+            DeckChangable.Remove(DeckChangable[temp]);
+        }
     }
 }
