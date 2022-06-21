@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8fd324595d3eb747a0ccf0d30d2a960, type: 3}
-  m_Name: Damage_
+  m_Script: {fileID: 11500000, guid: 5156e0ba99f88d240803692373d617dc, type: 3}
+  m_Name: Heal_
   m_EditorClassIdentifier: 
-  image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  description: che male fai x danni
-  cardName: che danno
-  type: 2
-  quantityUnlocked: 3
-  damage: 5
+  image: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  description: Ah mi sento molto meglio ora
+  cardName: Succo
+  type: 1
+  quantityUnlocked: 4
+  amount: 10

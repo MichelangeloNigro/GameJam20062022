@@ -31,21 +31,27 @@ public class CardReferenceHolder : MonoBehaviour {
 				border.color = Color.grey;
 				break;
 		}
+		name.text = cardData.cardName;
+		description.text = cardData.description;
+		image.sprite = cardData.image;
 	}
 
-	public void OnCardClick() {
-		if (cardData.quantityInDeck==0) {
-			CardManager.Instance.Deck.Add(cardData);
-			var temp=GameObject.Instantiate(GameManager.Instance.deckButtonPrefab,UiManager.Instance.deckSelectedContent.transform);
-			temp.GetComponent<DeckIconReferenceHolder>().card = cardData;
-		}
-		cardData.quantityInDeck++;
-		if (cardData.quantityInDeck+1<cardData.quantityUnlocked) {
-			
+	private void Update() {
+		if (cardData.quantityInDeck!=cardData.quantityUnlocked) {
+			GetComponent<Button>().interactable = true;
 		}
 		else {
 			GetComponent<Button>().interactable = false;
 		}
-		
+	}
+
+	public void OnCardClick() {
+		if (cardData.quantityInDeck==0) {
+			var temp=GameObject.Instantiate(GameManager.Instance.deckButtonPrefab,UiManager.Instance.deckSelectedContent.transform);
+			temp.GetComponent<DeckIconReferenceHolder>().card = cardData;
+		}
+		cardData.quantityInDeck++;
+		CardManager.Instance.Deck.Add(cardData);
+
 	}
 }

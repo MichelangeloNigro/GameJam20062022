@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class CardManager : SingletonDDOL<CardManager> {
     public List<GeneralCard> Deck;
-    private const int maxNumberOfCard=10;
-    private const int maxNumberOfAttackCard=10;
-    private const int maxNumberOfDefenseCard=10;
-    private const int maxNumberOfHealthCard=10;
-    private const int maxNumberOfBuffCard=10;
+    public  int maxNumberOfCard=10;
+    public const int maxNumberOfAttackCard=10;
+    public const int maxNumberOfDefenseCard=10;
+    public const int maxNumberOfHealthCard=10;
+    public const int maxNumberOfBuffCard=10;
 
     private int numberOfAttackCard;
     private int numberOfCard;

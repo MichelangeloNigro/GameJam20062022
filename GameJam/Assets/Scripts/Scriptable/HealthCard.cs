@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public abstract class HealthCard : GeneralCard {
-  [SerializeField] private int amount;
+  [SerializeField] public int amount;
 
   private void Cure() {
     //player.health += amount;

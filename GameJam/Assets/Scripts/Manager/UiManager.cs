@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Riutilizzabile;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,6 +13,7 @@ public class UiManager : SingletonDDOL<UiManager> {
   public Button currentCategory;
   public GameObject deckSelectionContent;
   public GameObject deckSelectedContent;
+  public TMP_Text deckCardsNumber;
   
   public void changeCategoryCards() {
     currentCategory.interactable = true;
@@ -24,9 +27,10 @@ public class UiManager : SingletonDDOL<UiManager> {
      }
   }
 
+  private void Update() {
+    deckCardsNumber.text = $"{CardManager.Instance.Deck.Count}/{CardManager.Instance.maxNumberOfCard}";
+  }
 
-
-  
   public void ChangeCurrentCategory() {
     currentCategory = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
     currentCategory.interactable = false;
