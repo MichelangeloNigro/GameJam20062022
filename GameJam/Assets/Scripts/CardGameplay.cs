@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -33,8 +34,19 @@ public class CardGameplay : MonoBehaviour {
     description.text = card.description;
     image.sprite = card.image;
   }
+
+  private void Update() {
+    // if (TurnManager.Instance.) {
+    //   foreach (var VARIABLE in UiManager.Instance.handContent.GetComponentsInChildren<CardGameplay>()) {
+    //     VARIABLE.GetComponent<Button>().interactable = true;
+    //   }    }
+  }
+
   public void OnClick() {
     card.Use();
+    foreach (var VARIABLE in UiManager.Instance.handContent.GetComponentsInChildren<CardGameplay>()) {
+      VARIABLE.GetComponent<Button>().interactable = false;
+    }
     Destroy(this.gameObject);
   }
 }
