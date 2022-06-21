@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour {
     private enum TurnPhase {
@@ -105,6 +106,9 @@ public class TurnManager : MonoBehaviour {
         if (actor != playerActor) {
             enemies.Remove(actor);
             Destroy(actor.gameObject);
+        }
+        else {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if (enemies.Count == 0) {
