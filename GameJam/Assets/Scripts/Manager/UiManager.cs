@@ -18,7 +18,14 @@ public class UiManager : SingletonDDOL<UiManager> {
   public TMP_Text deckCardsRemaning;
   public GameObject gameplayUi;
   public GameObject deckBuild;
-  
+  public Action onFinishDeck;
+ 
+
+  private void Start() {
+    
+    
+  }
+
   public void changeCategoryCards() {
     currentCategory.interactable = true;
     deckSelectionContent.transform.Clear();
@@ -34,6 +41,8 @@ public class UiManager : SingletonDDOL<UiManager> {
   public void DoneWithDeckBuild() {
     gameplayUi.SetActive(true);
     deckBuild.SetActive(false);
+    onFinishDeck?.Invoke();
+    TurnManager.Instance.InitBattle();
     foreach (var VARIABLE in CardManager.Instance.Deck) {
       CardManager.Instance.DeckChangable.Add(VARIABLE);
     }

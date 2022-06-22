@@ -49,6 +49,11 @@ public class TurnManager : MonoBehaviour {
     }
 
     private void Start() {
+       
+    }
+
+    public void InitBattle() {
+        
         Invoke(nameof(StartBattle), 1);
     }
 
