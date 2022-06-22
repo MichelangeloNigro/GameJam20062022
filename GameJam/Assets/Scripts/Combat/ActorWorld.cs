@@ -51,22 +51,27 @@ public class ActorWorld : MonoBehaviour {
     
     public void Init(Actor actor) {
         maxHealth = actor.baseHealth;
+        cardAvviable = actor.cardInHand;
         if (isPlayer) {
+            if (CardManager.Instance.Deck.Count < actor.cardInHand) {
+                cardAvviable = CardManager.Instance.Deck.Count;
+            }
             foreach (var card in CardManager.Instance.Deck) {
                 DeckChangable.Add(card);
             }
+            GetHand();
         }
         else {
             foreach (var card in actor.deck) {
                 DeckChangable.Add(card);
             }
         }
-        cardAvviable = actor.cardInHand;
+        
         currentHealth = actor.baseHealth;
         behaviorTree = GetComponent<BehaviorTree>();
         TurnManager.Instance.Subscribe(this);
         TurnManager.Instance.OnTurnPassed += ExecuteBehavior;
-        GetHand();
+        
     }
 
     private void OnDisable() {

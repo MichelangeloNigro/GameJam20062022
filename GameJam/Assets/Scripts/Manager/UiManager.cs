@@ -47,7 +47,7 @@ public class UiManager : SingletonDDOL<UiManager> {
     foreach (var VARIABLE in CardManager.Instance.Deck) {
       CardManager.Instance.DeckChangable.Add(VARIABLE);
     }
-    CardManager.Instance.getHand();
+    //CardManager.Instance.getHand();
   }
   private void Update() {
     if (CardManager.Instance.Deck.Count <= 0) {
