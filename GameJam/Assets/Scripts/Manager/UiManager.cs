@@ -24,7 +24,7 @@ public class UiManager : SingletonDDOL<UiManager> {
 
   private void Start() {
     
-    
+      SetInitialCategory();
   }
 
   public void changeCategoryCards() {
@@ -37,6 +37,18 @@ public class UiManager : SingletonDDOL<UiManager> {
          temp.GetComponent<CardReferenceHolder>().card = VARIABLE;
        }
      }
+  }
+
+  private void SetInitialCategory() {
+    currentCategory.interactable = false;
+    deckSelectionContent.transform.Clear();
+    var go = currentCategory;
+    foreach (var VARIABLE in GameManager.Instance.unlockedCards) {
+      if (VARIABLE.type==go.GetComponent<CardTypeHolder>().type&& VARIABLE.quantityInDeck<=VARIABLE.quantityUnlocked) {
+        var temp=GameObject.Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
+        temp.GetComponent<CardReferenceHolder>().card = VARIABLE;
+      }
+    }
   }
 
   public void DoneWithDeckBuild() {
