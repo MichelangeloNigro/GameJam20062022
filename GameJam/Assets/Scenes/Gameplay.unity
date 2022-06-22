@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3629359, g: 0.56619257, b: 0.8437096, a: 1}
+  m_IndirectSpecularColor: {r: 0.52512664, g: 0.5798293, b: 0.7817087, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -477,6 +477,7 @@ MonoBehaviour:
   turnPhase: 0
   battleManager: {fileID: 166998052}
   tileManager: {fileID: 2119647366}
+  currentIndex: 0
   cardUI: {fileID: 0}
 --- !u!4 &784260096
 Transform:
@@ -1140,7 +1141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634757824696978187, guid: 810c4c93782a45f4a9500629e853cbbf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8634757824720735845, guid: 810c4c93782a45f4a9500629e853cbbf, type: 3}
       propertyPath: m_TagString
@@ -1348,7 +1349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634757826189751656, guid: 810c4c93782a45f4a9500629e853cbbf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8634757826259180156, guid: 810c4c93782a45f4a9500629e853cbbf, type: 3}
       propertyPath: m_TagString

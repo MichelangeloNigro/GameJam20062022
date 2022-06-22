@@ -19,7 +19,7 @@ public class ActorWorld : MonoBehaviour {
     public Action<ActorWorld, GeneralCard> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;
     public Action<ActorWorld> OnDeath;
-    public Action OnFinishedTurn;
+    public Action<ActorWorld> OnFinishedTurn;
 
     [NonSerialized] public Animator animator;
 
@@ -102,7 +102,8 @@ public class ActorWorld : MonoBehaviour {
     }
     
     public void FinishTurn() {
-        OnFinishedTurn?.Invoke();
+        OnFinishedTurn?.Invoke(this);
+        Debug.Log("finishTurn");
     }
     
     #endregion

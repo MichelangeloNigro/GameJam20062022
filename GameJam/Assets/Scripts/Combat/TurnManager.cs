@@ -29,7 +29,7 @@ public class TurnManager : MonoBehaviour {
     public List<ActorWorld> Enemies => enemies;
 
     private ActorWorld currentActor;
-    private int currentIndex;
+    [SerializeField, ReadOnly] private int currentIndex;
     
     private ActorWorld playerActor;
     public ActorWorld PlayerActor => playerActor;
@@ -91,17 +91,23 @@ public class TurnManager : MonoBehaviour {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
             OnTargetSuccessfullySelected?.Invoke(chooser, target);
         }
+        else {
+            Debug.Log("wrong");
+        }
         if (cardUI!=null) {
             Destroy(cardUI);
         }
     }
 
-    public void PassTurn() {
-        currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
-        currentActor = actors[currentIndex];
-        turnPhase = TurnPhase.CardSelection;
-        if (currentActor != playerActor) {
-            OnTurnPassed?.Invoke(currentActor);
+    public void PassTurn(ActorWorld chooser) {
+        if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
+            currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
+            currentActor = actors[currentIndex];
+            turnPhase = TurnPhase.CardSelection;
+            if (currentActor != playerActor) {
+                OnTurnPassed?.Invoke(currentActor);
+            }
+            Debug.Log("pass turn");
         }
     }
 
