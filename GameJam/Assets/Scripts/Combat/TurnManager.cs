@@ -108,13 +108,16 @@ public class TurnManager : MonoBehaviour {
             return;
         }
         
+        if (enemies.Count == 0) {
+            OnFinishCombat?.Invoke();
+        }
+        
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
         turnPhase = TurnPhase.CardSelection;
         if (currentActor != playerActor) {
             OnTurnPassed?.Invoke(currentActor);
         }
-        Debug.Log("pass turn");
     }
 
     private void OnActorDeath(ActorWorld actor) {
@@ -134,10 +137,6 @@ public class TurnManager : MonoBehaviour {
             GameManager.Instance.AddGold(goldRecived);
             goldRecived = 0;
             StartCoroutine(FadeManager.Instance.ReloadScene());
-        }
-
-        if (enemies.Count == 0) {
-            OnFinishCombat?.Invoke();
         }
     }
 }
