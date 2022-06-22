@@ -11,6 +11,7 @@ public class CardDamage : AttackCard
 	protected override void CardEffect() {
 		base.CardEffect();
 		target.ModifyHealth(-damage);
+		chooser.transform.LookAt(target.transform, Vector3.up);
 		Debug.Log("damage"+damage);
 	}
 }

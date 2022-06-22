@@ -1037,7 +1037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634757824258791920, guid: 810c4c93782a45f4a9500629e853cbbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PassTurn
+      value: PlayerEndTurn
       objectReference: {fileID: 0}
     - target: {fileID: 8634757824258791920, guid: 810c4c93782a45f4a9500629e853cbbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

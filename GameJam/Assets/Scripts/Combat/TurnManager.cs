@@ -90,25 +90,31 @@ public class TurnManager : MonoBehaviour {
     private void OnTargetSelected(ActorWorld chooser, ActorWorld target) {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
             OnTargetSuccessfullySelected?.Invoke(chooser, target);
+            if (cardUI!=null) {
+                Destroy(cardUI);
+            }
         }
         else {
             Debug.Log("wrong");
         }
-        if (cardUI!=null) {
-            Destroy(cardUI);
-        }
+    }
+
+    public void PlayerEndTurn() {
+        PassTurn(playerActor);
     }
 
     public void PassTurn(ActorWorld chooser) {
-        if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
-            currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
-            currentActor = actors[currentIndex];
-            turnPhase = TurnPhase.CardSelection;
-            if (currentActor != playerActor) {
-                OnTurnPassed?.Invoke(currentActor);
-            }
-            Debug.Log("pass turn");
+        if (chooser != currentActor) {
+            return;
         }
+        
+        currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
+        currentActor = actors[currentIndex];
+        turnPhase = TurnPhase.CardSelection;
+        if (currentActor != playerActor) {
+            OnTurnPassed?.Invoke(currentActor);
+        }
+        Debug.Log("pass turn");
     }
 
     private void OnActorDeath(ActorWorld actor) {
