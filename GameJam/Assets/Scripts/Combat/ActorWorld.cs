@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class ActorWorld : MonoBehaviour {
     [SerializeField, ReadOnly] private float maxHealth;
     [SerializeField, ReadOnly] private float currentHealth;
+    public bool isStunned;
     public List<GeneralCard> DeckChangable=new List<GeneralCard>();
     public List<GeneralCard> Hand=new List<GeneralCard>();
     public bool isPlayer;
