@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class CardGameplay : UiCardDrawer {
   
   public void OnClick() {
-    CardManager.Instance.draw();
+    //CardManager.Instance.draw();
+    TurnManager.Instance.PlayerActor.Draw();
     TurnManager.Instance.PlayerActor.SelectCard(card);
-    Destroy(this.gameObject);
+    TurnManager.Instance.cardUI=this.gameObject;
+    //Destroy(this.gameObject);
   }
 }

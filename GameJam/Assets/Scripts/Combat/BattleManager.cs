@@ -1,9 +1,9 @@
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour {
-	private GeneralCard card;
-	private ActorWorld chooser;
-	private ActorWorld target;
+	public GeneralCard card;
+	public ActorWorld chooser;
+	public ActorWorld target;
 	
 	public void Init() {
 		TurnManager.Instance.OnCardSuccessfullySelected += SaveCard;
@@ -27,6 +27,9 @@ public class BattleManager : MonoBehaviour {
 
 	private void Act() {
 		card.Use(chooser, target);
+		card = null;
+		target = null;
+		chooser = null;
 		// target.ModifyHealth(-1);
 		// chooser.animator.SetTrigger("shooting");
 	}

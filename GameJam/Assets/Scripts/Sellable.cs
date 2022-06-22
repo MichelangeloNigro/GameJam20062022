@@ -5,7 +5,7 @@ public class Sellable : UiCardDrawer {
   public int cost;
 
   public void OnClick() {
-    if (GameManager.Instance.money-cost<=0) {
+    if (GameManager.Instance.money-cost>=0) {
       GameManager.Instance.money -= cost;
       if (card==null) {
       

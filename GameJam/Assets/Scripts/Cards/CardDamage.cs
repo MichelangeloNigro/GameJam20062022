@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardDamage : AttackCard
 {
 	public override void Use(ActorWorld chooser, ActorWorld target) {
+		target.ModifyHealth(-damage);
 		Debug.Log("damage"+damage);
 	}
 }

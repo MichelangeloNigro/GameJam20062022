@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class ActorWorld : MonoBehaviour {
@@ -13,6 +14,7 @@ public class ActorWorld : MonoBehaviour {
     public bool isPlayer;
     private int cardAvviable;
     private BehaviorTree behaviorTree;
+    public Image lifebar;
 
     public Action<ActorWorld, GeneralCard> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;
@@ -31,15 +33,17 @@ public class ActorWorld : MonoBehaviour {
     public void GetHand() {
         for (int i = 0; i < cardAvviable; i++) {
             int temp = Random.Range(0, DeckChangable.Count);
-            var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
-            tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
+            if (isPlayer) {
+                var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
+                tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp]; 
+            }
             Hand.Add(DeckChangable[temp]);
             DeckChangable.Remove(DeckChangable[temp]);
         }
     }
 
     public void Draw() {
-        if (DeckChangable.Count>0) {
+        if (DeckChangable.Count>0&& Hand.Count<=cardAvviable) {
             int temp = Random.Range(0, DeckChangable.Count);
             var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
             tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
@@ -53,13 +57,13 @@ public class ActorWorld : MonoBehaviour {
         maxHealth = actor.baseHealth;
         cardAvviable = actor.cardInHand;
         if (isPlayer) {
+            lifebar = GameObject.FindWithTag("Player").GetComponent<Image>();
             if (CardManager.Instance.Deck.Count < actor.cardInHand) {
                 cardAvviable = CardManager.Instance.Deck.Count;
             }
             foreach (var card in CardManager.Instance.Deck) {
                 DeckChangable.Add(card);
             }
-            GetHand();
         }
         else {
             foreach (var card in actor.deck) {
@@ -67,7 +71,7 @@ public class ActorWorld : MonoBehaviour {
             }
             
         }
-        
+        GetHand();
         currentHealth = actor.baseHealth;
         behaviorTree = GetComponent<BehaviorTree>();
         TurnManager.Instance.Subscribe(this);
@@ -108,6 +112,7 @@ public class ActorWorld : MonoBehaviour {
     public void ModifyHealth(float amount) {
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UiManager.Instance.setLife(currentHealth,maxHealth,lifebar);
         if (currentHealth <= 0) {
             Die();
         }

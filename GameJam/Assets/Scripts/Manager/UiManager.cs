@@ -69,7 +69,9 @@ public class UiManager : SingletonDDOL<UiManager> {
       doneButton.SetActive(true);
     }
       deckCardsNumber.text = $"{CardManager.Instance.Deck.Count}/{CardManager.Instance.maxNumberOfCard}";
-    deckCardsRemaning.text = $"{CardManager.Instance.DeckChangable.Count}/{CardManager.Instance.Deck.Count}";
+      if (TurnManager.Instance.PlayerActor) {
+        deckCardsRemaning.text = $"{TurnManager.Instance.PlayerActor.DeckChangable.Count}/{CardManager.Instance.Deck.Count}";
+      }
   }
 
   public void ChangeCurrentCategory() {
@@ -83,10 +85,12 @@ public class UiManager : SingletonDDOL<UiManager> {
   [ProgressBar(0, 1, ColorGetter = "GetHealthBarColor")]
   [OnValueChanged("setLifeEditor")]
   public float lifeTest;
-  public void setLife(int currentLife, int totalLife, Image lifebar) {
-    lifebar.fillAmount = currentLife /(float) totalLife;
-    lifebar.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(currentLife / 1f, 2));
-  } public void setLifeEditor() {
+  
+  public void setLife(float currentLife, float totalLife, Image lifebar) {
+    lifebar.fillAmount = currentLife / totalLife;
+    lifebar.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(currentLife /totalLife, 2));
+  } 
+  public void setLifeEditor() {
     life.fillAmount = lifeTest /(float) 1;
     life.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(lifeTest / 1f, 2));
   }
