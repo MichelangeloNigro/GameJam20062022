@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 1865870577543897069}
   - component: {fileID: 7049771580424159469}
   - component: {fileID: 4689768707023244726}
+  - component: {fileID: 4297169854096400453}
   m_Layer: 0
   m_Name: Bad Guy
   m_TagString: Untagged
@@ -566,6 +567,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  DeckChangable: []
+  Hand: []
+  managerStatus: {fileID: 4297169854096400453}
 --- !u!114 &4689768707023244726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,6 +610,26 @@ MonoBehaviour:
       Version: 
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &4297169854096400453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451409244940204475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310f0866106cf6e4693490cbf107aab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusList:
+  - isAfflicted: 0
+    numberOfTurnAfflicted: 0
+  - isAfflicted: 0
+    numberOfTurnAfflicted: 0
+  - isAfflicted: 0
+    numberOfTurnAfflicted: 0
+  currentActor: {fileID: 7049771580424159469}
 --- !u!1 &1451414289452241957
 GameObject:
   m_ObjectHideFlags: 0

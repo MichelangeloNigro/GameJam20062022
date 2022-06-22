@@ -20,6 +20,9 @@ public class ActorWorld : MonoBehaviour {
 
     [NonSerialized] public Animator animator;
 
+    public StatusManager managerStatus;
+    
+
     private void Awake() {
         animator = GetComponent<Animator>();
        
@@ -101,4 +104,7 @@ public class ActorWorld : MonoBehaviour {
     }
 
     #endregion
+
+
+    
 }
