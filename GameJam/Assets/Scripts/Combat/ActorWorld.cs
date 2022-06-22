@@ -65,6 +65,7 @@ public class ActorWorld : MonoBehaviour {
             foreach (var card in actor.deck) {
                 DeckChangable.Add(card);
             }
+            
         }
         
         currentHealth = actor.baseHealth;
