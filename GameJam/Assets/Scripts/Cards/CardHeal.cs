@@ -6,5 +6,10 @@ public class CardHeal : HealthCard
 {
 	public override void Use(ActorWorld chooser, ActorWorld target) {
 		Debug.Log($"heal for {amount}");
+		target.ModifyHealth(amount);
+		if (canUnstunnedActor) {
+			target.isStunned = false;
+		}
 	}
 }
+
