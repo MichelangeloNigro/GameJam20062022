@@ -96,7 +96,7 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    private void PassTurn() {
+    public void PassTurn() {
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
         turnPhase = TurnPhase.CardSelection;

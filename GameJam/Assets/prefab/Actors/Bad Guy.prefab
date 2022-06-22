@@ -571,7 +571,7 @@ MonoBehaviour:
   DeckChangable: []
   Hand: []
   isPlayer: 0
-  lifebar: {fileID: 0}
+  lifebar: {fileID: 3765642455774552118}
   managerStatus: {fileID: 4297169854096400453}
 --- !u!114 &4689768707023244726
 MonoBehaviour:
@@ -2157,4 +2157,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa760a92c16294f4cb91f1688de82e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camTransform: {fileID: 0}

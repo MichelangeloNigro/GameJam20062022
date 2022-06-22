@@ -20,11 +20,16 @@ public class UiManager : SingletonDDOL<UiManager> {
   public GameObject deckBuild;
   public GameObject doneButton;
   public Action onFinishDeck;
+  public TMP_Text lifeRemain;
  
 
   private void Start() {
     
       SetInitialCategory();
+  }
+
+  private void OnEnable() {
+    SetInitialCategory();
   }
 
   public void changeCategoryCards() {
@@ -89,6 +94,9 @@ public class UiManager : SingletonDDOL<UiManager> {
   public void setLife(float currentLife, float totalLife, Image lifebar) {
     lifebar.fillAmount = currentLife / totalLife;
     lifebar.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(currentLife /totalLife, 2));
+    if (lifebar == life) { 
+    lifeRemain.text = currentLife + " / " + totalLife;
+    }
   } 
   public void setLifeEditor() {
     life.fillAmount = lifeTest /(float) 1;
