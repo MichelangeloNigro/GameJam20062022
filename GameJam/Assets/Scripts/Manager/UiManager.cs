@@ -18,6 +18,7 @@ public class UiManager : SingletonDDOL<UiManager> {
   public TMP_Text deckCardsRemaning;
   public GameObject gameplayUi;
   public GameObject deckBuild;
+  public GameObject doneButton;
   public Action onFinishDeck;
  
 
@@ -49,7 +50,13 @@ public class UiManager : SingletonDDOL<UiManager> {
     CardManager.Instance.getHand();
   }
   private void Update() {
-    deckCardsNumber.text = $"{CardManager.Instance.Deck.Count}/{CardManager.Instance.maxNumberOfCard}";
+    if (CardManager.Instance.Deck.Count <= 0) {
+      doneButton.SetActive(false);
+    }
+    else {
+      doneButton.SetActive(true);
+    }
+      deckCardsNumber.text = $"{CardManager.Instance.Deck.Count}/{CardManager.Instance.maxNumberOfCard}";
     deckCardsRemaning.text = $"{CardManager.Instance.DeckChangable.Count}/{CardManager.Instance.Deck.Count}";
   }
 
