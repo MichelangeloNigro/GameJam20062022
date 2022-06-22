@@ -21,8 +21,16 @@ public abstract class GeneralCard : ScriptableObject {
 	[NonSerialized] public int quantityInDeck;
 	public int quantityUnlocked;
 	public int maximumOwned;
+
+	protected ActorWorld chooser;
+	protected ActorWorld target;
 	public virtual void Use(ActorWorld chooser, ActorWorld target) {
-		chooser.GetComponent<Animator>();
+		this.chooser = chooser;
+		this.target = target;
+		chooser.OnCardUsed += CardEffect;
 	}
 
+	protected virtual void CardEffect() {
+		chooser.OnCardUsed -= CardEffect;
+	}
 }
