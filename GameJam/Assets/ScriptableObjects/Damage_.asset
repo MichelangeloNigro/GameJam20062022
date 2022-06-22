@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fd324595d3eb747a0ccf0d30d2a960, type: 3}
   m_Name: Damage_
   m_EditorClassIdentifier: 
-  image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  image: {fileID: 566447732, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
   description: che male fai x danni
   cardName: che danno
   type: 2
   quantityUnlocked: 3
+  maximumOwned: 0
   damage: 5

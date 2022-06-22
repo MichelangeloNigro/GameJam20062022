@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5156e0ba99f88d240803692373d617dc, type: 3}
   m_Name: Heal_
   m_EditorClassIdentifier: 
-  image: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  image: {fileID: -592490805, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
   description: Ah mi sento molto meglio ora
   cardName: Succo
   type: 1
   quantityUnlocked: 4
+  maximumOwned: 0
   amount: 10
