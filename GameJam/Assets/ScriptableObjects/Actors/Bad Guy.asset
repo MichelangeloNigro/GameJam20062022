@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 10
   actorPrefab: {fileID: 1451409244940204475, guid: 1295aa4eaa56a7f489dfd0c0489aea8e, type: 3}
+  deck:
+  - {fileID: 11400000, guid: deef7d7c79e6ff44fae974b25b54283f, type: 2}
+  - {fileID: 11400000, guid: 96dff983189a659438d28b0d969e22d4, type: 2}
+  maxNumberOfCard: 30
+  cardInHand: 2

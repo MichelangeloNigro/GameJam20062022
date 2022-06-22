@@ -1748,6 +1748,7 @@ MonoBehaviour:
   currentHealth: 0
   DeckChangable: []
   Hand: []
+  isPlayer: 1
   managerStatus: {fileID: 906610459770420810}
 --- !u!136 &4559143563676216969
 CapsuleCollider:

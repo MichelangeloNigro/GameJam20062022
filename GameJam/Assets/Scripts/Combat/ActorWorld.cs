@@ -10,6 +10,7 @@ public class ActorWorld : MonoBehaviour {
     [SerializeField, ReadOnly] private float currentHealth;
     public List<GeneralCard> DeckChangable=new List<GeneralCard>();
     public List<GeneralCard> Hand=new List<GeneralCard>();
+    public bool isPlayer;
     private int cardAvviable;
     private BehaviorTree behaviorTree;
 
@@ -27,17 +28,17 @@ public class ActorWorld : MonoBehaviour {
         animator = GetComponent<Animator>();
        
     }
-    public void getHand() {
+    public void GetHand() {
         for (int i = 0; i < cardAvviable; i++) {
             int temp = Random.Range(0, DeckChangable.Count);
-            var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
+            var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
             tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
             Hand.Add(DeckChangable[temp]);
             DeckChangable.Remove(DeckChangable[temp]);
         }
     }
 
-    public void draw() {
+    public void Draw() {
         if (DeckChangable.Count>0) {
             int temp = Random.Range(0, DeckChangable.Count);
             var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
@@ -50,15 +51,22 @@ public class ActorWorld : MonoBehaviour {
     
     public void Init(Actor actor) {
         maxHealth = actor.baseHealth;
-        foreach (var VARIABLE in actor.deck) {
-            DeckChangable.Add(VARIABLE);
+        if (isPlayer) {
+            foreach (var card in CardManager.Instance.Deck) {
+                DeckChangable.Add(card);
+            }
+        }
+        else {
+            foreach (var card in actor.deck) {
+                DeckChangable.Add(card);
+            }
         }
         cardAvviable = actor.cardInHand;
         currentHealth = actor.baseHealth;
         behaviorTree = GetComponent<BehaviorTree>();
         TurnManager.Instance.Subscribe(this);
         TurnManager.Instance.OnTurnPassed += ExecuteBehavior;
-        getHand();
+        GetHand();
     }
 
     private void OnDisable() {
