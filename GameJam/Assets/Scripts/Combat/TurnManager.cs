@@ -33,6 +33,7 @@ public class TurnManager : MonoBehaviour {
     
     private ActorWorld playerActor;
     public ActorWorld PlayerActor => playerActor;
+    private int goldRecived;
 
     private void Awake() {
         Instance = this;
@@ -67,6 +68,7 @@ public class TurnManager : MonoBehaviour {
     }
     
     private void StartBattle() {
+        goldRecived = enemies.Count;
         currentActor = actors[0];
         currentIndex = 0;
         turnPhase = TurnPhase.CardSelection;
@@ -108,6 +110,8 @@ public class TurnManager : MonoBehaviour {
             Destroy(actor.gameObject);
         }
         else {
+            GoldManager.instance.AddGold(goldRecived);
+            goldRecived = 0;
             StartCoroutine(FadeManager.Instance.ReloadScene());
         }
 
