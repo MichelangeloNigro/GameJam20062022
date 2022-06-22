@@ -28,30 +28,26 @@ public class UiManager : SingletonDDOL<UiManager> {
       SetInitialCategory();
   }
 
-  private void OnEnable() {
-    SetInitialCategory();
-  }
-
-  public void changeCategoryCards() {
+  public void changeCategoryCards() { 
     currentCategory.interactable = true;
     deckSelectionContent.transform.Clear();
     var go = EventSystem.current.currentSelectedGameObject;
-     foreach (var VARIABLE in GameManager.Instance.unlockedCards) {
-       if (VARIABLE.type==go.GetComponent<CardTypeHolder>().type&& VARIABLE.quantityInDeck<=VARIABLE.quantityUnlocked) {
-         var temp=GameObject.Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
-         temp.GetComponent<CardReferenceHolder>().card = VARIABLE;
-       }
-     }
+    foreach (var cardQuantity in GameManager.Instance.unlockedCards) {
+      if (cardQuantity.Key.type == go.GetComponent<CardTypeHolder>().type && GameManager.Instance.cardsInDeck[cardQuantity.Key] <= cardQuantity.Value) {
+        var temp = Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
+        temp.GetComponent<CardReferenceHolder>().card = cardQuantity.Key;
+      }
+    }
   }
 
   private void SetInitialCategory() {
     currentCategory.interactable = false;
     deckSelectionContent.transform.Clear();
     var go = currentCategory;
-    foreach (var VARIABLE in GameManager.Instance.unlockedCards) {
-      if (VARIABLE.type==go.GetComponent<CardTypeHolder>().type&& VARIABLE.quantityInDeck<=VARIABLE.quantityUnlocked) {
-        var temp=GameObject.Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
-        temp.GetComponent<CardReferenceHolder>().card = VARIABLE;
+    foreach (var cardQuantity in GameManager.Instance.unlockedCards) {
+      if (cardQuantity.Key.type == go.GetComponent<CardTypeHolder>().type && GameManager.Instance.cardsInDeck[cardQuantity.Key] <= cardQuantity.Value) {
+        var temp = Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
+        temp.GetComponent<CardReferenceHolder>().card = cardQuantity.Key;
       }
     }
   }
@@ -61,8 +57,8 @@ public class UiManager : SingletonDDOL<UiManager> {
     deckBuild.SetActive(false);
     onFinishDeck?.Invoke();
     TurnManager.Instance.InitBattle();
-    foreach (var VARIABLE in CardManager.Instance.Deck) {
-      CardManager.Instance.DeckChangable.Add(VARIABLE);
+    foreach (var card in CardManager.Instance.Deck) {
+      CardManager.Instance.DeckChangable.Add(card);
     }
     //CardManager.Instance.getHand();
   }
@@ -75,7 +71,7 @@ public class UiManager : SingletonDDOL<UiManager> {
     }
       deckCardsNumber.text = $"{CardManager.Instance.Deck.Count}/{CardManager.Instance.maxNumberOfCard}";
       if (TurnManager.Instance.PlayerActor) {
-        deckCardsRemaning.text = $"{TurnManager.Instance.PlayerActor.DeckChangable.Count}/{CardManager.Instance.Deck.Count}";
+        deckCardsRemaning.text = $"{TurnManager.Instance.PlayerActor.tempDeck.Count}/{CardManager.Instance.Deck.Count}";
       }
   }
 

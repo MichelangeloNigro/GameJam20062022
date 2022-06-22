@@ -34,6 +34,8 @@ public class TurnManager : MonoBehaviour {
     private ActorWorld playerActor;
     public ActorWorld PlayerActor => playerActor;
     private int goldRecived;
+
+    public GeneralCard selectedCard;
     public GameObject cardUI;
 
     private void Awake() {
@@ -83,6 +85,7 @@ public class TurnManager : MonoBehaviour {
     private void OnCardSelected(ActorWorld actor, GeneralCard card) {
         if (turnPhase == TurnPhase.CardSelection && actor == currentActor) {
             turnPhase = TurnPhase.TargetSelection;
+            selectedCard = card;
             OnCardSuccessfullySelected?.Invoke(card);
         }
     }
@@ -90,6 +93,7 @@ public class TurnManager : MonoBehaviour {
     private void OnTargetSelected(ActorWorld chooser, ActorWorld target) {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
             OnTargetSuccessfullySelected?.Invoke(chooser, target);
+            chooser.RemoveCardFromHand(selectedCard);
             if (cardUI!=null) {
                 Destroy(cardUI);
             }
@@ -115,6 +119,7 @@ public class TurnManager : MonoBehaviour {
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
         turnPhase = TurnPhase.CardSelection;
+        currentActor.Draw();
         if (currentActor != playerActor) {
             OnTurnPassed?.Invoke(currentActor);
         }

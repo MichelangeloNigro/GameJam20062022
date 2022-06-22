@@ -10,7 +10,7 @@ public class CardGameplay : UiCardDrawer {
     //CardManager.Instance.draw();
     TurnManager.Instance.PlayerActor.Draw();
     TurnManager.Instance.PlayerActor.SelectCard(card);
-    TurnManager.Instance.cardUI=this.gameObject;
+    TurnManager.Instance.cardUI = gameObject;
     //Destroy(this.gameObject);
   }
 }

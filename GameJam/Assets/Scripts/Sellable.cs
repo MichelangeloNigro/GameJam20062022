@@ -11,15 +11,15 @@ public class Sellable : UiCardDrawer {
       
       }
       else {
-        if (GameManager.Instance.unlockedCards.Contains(card)) {
-          card.quantityUnlocked++;
-          if (card.quantityUnlocked==card.maximumOwned) {
+        if (GameManager.Instance.unlockedCards.ContainsKey(card)) {
+          GameManager.Instance.unlockedCards[card]++;
+          if (GameManager.Instance.unlockedCards[card]==card.maximumOwned) {
             GetComponent<Button>().interactable = false;
           }
-          card.quantityUnlocked=Mathf.Clamp(card.quantityUnlocked, 0, card.maximumOwned);
+          GameManager.Instance.unlockedCards[card]=Mathf.Clamp(GameManager.Instance.unlockedCards[card], 0, card.maximumOwned);
         }
         else {
-          GameManager.Instance.unlockedCards.Add(card);
+          GameManager.Instance.UnlockCard(card);
         }
       }
     }

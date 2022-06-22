@@ -9,11 +9,10 @@ using Random = UnityEngine.Random;
 public class ActorWorld : MonoBehaviour {
     [SerializeField, ReadOnly] private float maxHealth;
     [SerializeField, ReadOnly] private float currentHealth;
-    public bool isStunned;
-    public List<GeneralCard> DeckChangable=new List<GeneralCard>();
-    public List<GeneralCard> Hand=new List<GeneralCard>();
+    private List<GeneralCard> deck = new();
+    public List<GeneralCard> tempDeck = new();
+    public List<GeneralCard> hand;
     public bool isPlayer;
-    private int cardAvviable;
     private BehaviorTree behaviorTree;
     public Image lifebar;
 
@@ -27,53 +26,56 @@ public class ActorWorld : MonoBehaviour {
 
     public StatusManager managerStatus;
     
+    private int maxCardsInHand;
 
     private void Awake() {
         animator = GetComponent<Animator>();
-       
     }
-    public void GetHand() {
-        for (int i = 0; i < cardAvviable; i++) {
-            int temp = Random.Range(0, DeckChangable.Count);
+
+    private void PopulateHand() {
+        for (int i = 0; i < maxCardsInHand; i++) {
+            int temp = Random.Range(0, tempDeck.Count);
             if (isPlayer) {
                 var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
-                tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp]; 
+                tempGameObject.GetComponent<CardGameplay>().card = tempDeck[temp]; 
             }
-            Hand.Add(DeckChangable[temp]);
-            DeckChangable.Remove(DeckChangable[temp]);
+            hand.Add(tempDeck[temp]);
+            tempDeck.Remove(tempDeck[temp]);
         }
     }
 
     public void Draw() {
-        if (DeckChangable.Count>0&& Hand.Count<=cardAvviable) {
-            int temp = Random.Range(0, DeckChangable.Count);
-            var tempGameObject=GameObject.Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
-            tempGameObject.GetComponent<CardGameplay>().card = DeckChangable[temp];
-            Hand.Add(DeckChangable[temp]);
-            DeckChangable.Remove(DeckChangable[temp]);
+        if (tempDeck.Count> 0 && hand.Count<=maxCardsInHand) {
+            int temp = Random.Range(0, tempDeck.Count);
+            if (isPlayer) {
+                var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
+                tempGameObject.GetComponent<CardGameplay>().card = tempDeck[temp];
+            }
+            hand.Add(tempDeck[temp]);
+            tempDeck.Remove(tempDeck[temp]);
         }
     }
     #region Turn Related Methods
     
     public void Init(Actor actor) {
         maxHealth = actor.baseHealth;
-        cardAvviable = actor.cardInHand;
+        maxCardsInHand = actor.maxCardsInHand;
         if (isPlayer) {
             lifebar = GameObject.FindWithTag("Player").GetComponent<Image>();
-            if (CardManager.Instance.Deck.Count < actor.cardInHand) {
-                cardAvviable = CardManager.Instance.Deck.Count;
+            if (CardManager.Instance.Deck.Count < actor.maxCardsInHand) {
+                maxCardsInHand = CardManager.Instance.Deck.Count;
             }
-            foreach (var card in CardManager.Instance.Deck) {
-                DeckChangable.Add(card);
-            }
+            deck = CardManager.Instance.Deck;
+            tempDeck = deck;
         }
         else {
             foreach (var card in actor.deck) {
-                DeckChangable.Add(card);
+                for (int i = 0; i < card.Value; i++) {
+                    tempDeck.Add(card.Key);
+                }
             }
-            
         }
-        GetHand();
+        PopulateHand();
         currentHealth = actor.baseHealth;
         behaviorTree = GetComponent<BehaviorTree>();
         TurnManager.Instance.Subscribe(this);
@@ -91,6 +93,10 @@ public class ActorWorld : MonoBehaviour {
 
     public void SelectTarget(ActorWorld actor) {
         OnTargetSelected(this, actor);
+    }
+
+    public void RemoveCardFromHand(GeneralCard card) {
+        hand.Remove(card);
     }
 
     private void OnMouseDown() {

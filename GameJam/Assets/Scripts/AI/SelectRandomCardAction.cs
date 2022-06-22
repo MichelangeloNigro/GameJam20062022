@@ -10,7 +10,7 @@ public class SelectRandomCardAction : Action {
 
 	public override TaskStatus OnUpdate()
 	{
-		actorWorld.SelectCard(actorWorld.Hand[Random.Range(0,actorWorld.Hand.Count)]);
+		actorWorld.SelectCard(actorWorld.hand[Random.Range(0,actorWorld.hand.Count)]);
 		return TaskStatus.Success;
 	}
 }

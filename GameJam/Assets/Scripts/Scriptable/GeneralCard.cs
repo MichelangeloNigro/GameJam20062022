@@ -18,8 +18,6 @@ public abstract class GeneralCard : ScriptableObject {
 	[TextArea] public string description;
 	public string cardName;
 	public CardType type;
-	[NonSerialized] public int quantityInDeck;
-	public int quantityUnlocked;
 	public int maximumOwned;
 
 	protected ActorWorld chooser;

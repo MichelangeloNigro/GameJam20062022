@@ -1665,8 +1665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockedCards:
-  - {fileID: 11400000, guid: deef7d7c79e6ff44fae974b25b54283f, type: 2}
-  - {fileID: 11400000, guid: 96dff983189a659438d28b0d969e22d4, type: 2}
+    keyData: []
+    valueData: 
   cardPrefab: {fileID: 2127076193070611028, guid: 2a4350cdd0bec7c41bb774ed55812b75, type: 3}
   cardGameplayPrefab: {fileID: 1075372862032633065, guid: cad67ad0321b6ad419c4071fccf1337c, type: 3}
   deckButtonPrefab: {fileID: 9126876422227810101, guid: bda767a8ef3557646b1e89c897820559, type: 3}
@@ -5841,7 +5841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8634757826189751660
 RectTransform:
   m_ObjectHideFlags: 0
