@@ -110,7 +110,7 @@ public class TurnManager : MonoBehaviour {
             Destroy(actor.gameObject);
         }
         else {
-            GoldManager.instance.AddGold(goldRecived);
+            GameManager.Instance.AddGold(goldRecived);
             goldRecived = 0;
             StartCoroutine(FadeManager.Instance.ReloadScene());
         }

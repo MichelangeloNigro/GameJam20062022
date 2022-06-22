@@ -10,4 +10,8 @@ public class GameManager : SingletonDDOL<GameManager> {
     public GameObject deckButtonPrefab;
     public int money;
 
+    
+    public void AddGold(int goldObtained) {
+        money += goldObtained;
+    }
 }
