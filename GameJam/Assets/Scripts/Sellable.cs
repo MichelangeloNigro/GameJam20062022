@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Sellable : UiCardDrawer {
+public class Sellable : UiCardDrawer, IPointerEnterHandler,IPointerExitHandler {
   public int cost;
-
+  public void OnPointerEnter(PointerEventData eventData)
+  {
+    ToolTipManager.instace.ShowToolTip(card.cardName,card.description+" This card costs: "+cost);
+  }
   public void OnClick() {
     if (GameManager.Instance.money-cost>=0) {
       GameManager.Instance.money -= cost;

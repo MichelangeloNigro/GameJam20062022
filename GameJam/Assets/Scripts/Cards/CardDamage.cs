@@ -16,7 +16,9 @@ public class CardDamage : AttackCard
 	public IEnumerator spawnVfx(ActorWorld self, ActorWorld enemy) {
 		yield return new WaitForSeconds(1.4f);
 		Debug.Log(self.currWeapon);
-		self.currWeapon.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+		if (self.currWeapon.GetComponentInChildren<ParticleSystem>(true)) {
+			self.currWeapon.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+		}
 		AudioSource.PlayClipAtPoint(sound,Vector3.zero);
 		yield return new WaitForSeconds(0.4f);
 		if (enemy) {
