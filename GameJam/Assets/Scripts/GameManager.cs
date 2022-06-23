@@ -12,6 +12,7 @@ public class GameManager : SingletonDDOL<GameManager> , ISavable {
     public GameObject deckButtonPrefab;
     public int money;
     public Dictionary<GeneralCard, int> cardsInDeck = new();
+    public GameObject bloodVFX;
 
     private void OnEnable() {
         // foreach (var card in unlockedCards) {
