@@ -5,7 +5,6 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.WSA;
 using Random = UnityEngine.Random;
 
 public class ActorWorld : MonoBehaviour {
