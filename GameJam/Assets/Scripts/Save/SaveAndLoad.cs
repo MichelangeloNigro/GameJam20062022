@@ -14,7 +14,6 @@ public class SaveAndLoad : SingletonDDOL<SaveAndLoad> {
 	public Action StartSave;
 	public Data ToBeSaved = new Data();
 	public int slot;
-	private AsyncOperation operation;
 	public List<GeneralCard> AllCard;
 
 	private void Update() {
@@ -43,11 +42,11 @@ public class SaveAndLoad : SingletonDDOL<SaveAndLoad> {
 			Time.timeScale = 1f;
 			var data = ReadFile();
 			FindObjectOfType<GameManager>().money = data.money;
-			FindObjectOfType<GameManager>().cardsInDeck = new Dictionary<GeneralCard, int>();
+			FindObjectOfType<GameManager>().unlockedCards = new CardQuantity();
 			foreach (var alluid in AllCard) {
 				foreach (var uid in data.cardUids) {
 					if (uid==alluid.uid) {
-						FindObjectOfType<GameManager>().cardsInDeck.Add(alluid,data.cardNumber[data.cardUids.IndexOf(uid)]);
+						FindObjectOfType<GameManager>().unlockedCards.Add(alluid,data.cardNumber[data.cardUids.IndexOf(uid)]);
 					}
 				}
 			}
@@ -190,18 +189,5 @@ public class SaveAndLoad : SingletonDDOL<SaveAndLoad> {
 	public void SetSlot(int i) {
 		slot = i;
 	}
-
-	public IEnumerator loadSceneAsync(string scene) {
-		operation = SceneManager.LoadSceneAsync(scene);
-		operation.allowSceneActivation = false;
-		while (!operation.isDone) {
-			Debug.Log("LOAD SCENE: Progress: " + operation.progress);
-			Debug.Log(operation.allowSceneActivation);
-			if (operation.progress >= 0.9f) {
-				operation.allowSceneActivation = true;
-			}
-			yield return null;
-		}
-		operation = null;
-	}
+	
 }

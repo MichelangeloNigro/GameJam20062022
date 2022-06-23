@@ -16,6 +16,7 @@ MonoBehaviour:
   description: che male fai x danni
   cardName: che danno
   type: 2
-  quantityUnlocked: 3
   maximumOwned: 0
+  uid: e06d644409b2ce54d98df50e4b7f4f1b
   damage: 5
+  weaponModel: {fileID: 1908759806999368, guid: 146c5256fc521374c91ca33fc98e9603, type: 3}

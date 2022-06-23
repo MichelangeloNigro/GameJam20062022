@@ -7,17 +7,17 @@ using UnityEngine;
 
 public class GameManager : SingletonDDOL<GameManager> , ISavable {
     public CardQuantity unlockedCards;
-    public Dictionary<GeneralCard, int> cardsInDeck = new();
     public GameObject cardPrefab;
     public GameObject cardGameplayPrefab;
     public GameObject deckButtonPrefab;
     public int money;
+    public Dictionary<GeneralCard, int> cardsInDeck = new();
 
     private void OnEnable() {
-       SaveAndLoad.Instance.StartSave += OnSave;
-        foreach (var card in unlockedCards) {
-            cardsInDeck.Add(card.Key, 0);
-        }
+        // foreach (var card in unlockedCards) {
+        //     cardsInDeck.Add(card.Key, 0);
+        // }
+        SaveAndLoad.Instance.StartSave += OnSave;
     }
 
     private void OnDisable() {
@@ -48,8 +48,8 @@ public class GameManager : SingletonDDOL<GameManager> , ISavable {
 
     public void OnSave() {
         SaveAndLoad.Instance.ToBeSaved.money = money;
-        Debug.Log(cardsInDeck.Count);
-        foreach (var VARIABLE in cardsInDeck) {
+        Debug.Log(unlockedCards.Count);
+        foreach (var VARIABLE in unlockedCards) {
             SaveAndLoad.Instance.ToBeSaved.cardUids.Add(VARIABLE.Key.uid);
             SaveAndLoad.Instance.ToBeSaved.cardNumber.Add(VARIABLE.Value);
         }

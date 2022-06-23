@@ -17,5 +17,6 @@ MonoBehaviour:
     non potr\xE0 muoversi per un po'"
   cardName: Lazzo
   type: 2
-  quantityUnlocked: 0
+  maximumOwned: 0
+  uid: 55f4f3f5e2f1d3346bb2eeb6c268a416
   damage: 5

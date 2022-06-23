@@ -17,7 +17,8 @@ public class ActorWorld : MonoBehaviour {
     private BehaviorTree behaviorTree;
     public Image lifebar;
     public int goldDrop;
-    public TMP_Text goldText;
+    public Transform handR;
+    public GameObject currWeapon;
 
     public Action<ActorWorld, GeneralCard> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;

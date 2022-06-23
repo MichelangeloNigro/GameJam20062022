@@ -16,5 +16,7 @@ MonoBehaviour:
   description: 
   cardName: 
   type: 1
-  quantityUnlocked: 0
+  maximumOwned: 0
+  uid: f76ae2795293ebe459431cfc0421905a
   amount: 5
+  canUnstunnedActor: 0

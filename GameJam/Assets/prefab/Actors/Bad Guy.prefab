@@ -190,6 +190,7 @@ Transform:
   - {fileID: 1455690317889880303}
   - {fileID: 1455413897545221683}
   - {fileID: 1455772783149644543}
+  - {fileID: 8422523836473712566}
   m_Father: {fileID: 1455711355650805859}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -568,13 +569,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
-  isStunned: 0
-  DeckChangable: []
-  Hand: []
+  tempDeck: []
+  hand: []
   isPlayer: 0
   lifebar: {fileID: 3765642455774552118}
   goldDrop: 20
-  goldText: {fileID: 0}
+  handR: {fileID: 8422523836473712566}
+  currWeapon: {fileID: 0}
   managerStatus: {fileID: 4297169854096400453}
 --- !u!114 &4689768707023244726
 MonoBehaviour:
@@ -1856,6 +1857,37 @@ Transform:
   m_Father: {fileID: 1455772783149644543}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1623253974344737204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8422523836473712566}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8422523836473712566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623253974344737204}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0.124, y: 0.059, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1453985679389297803}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &2980576206035513611
 GameObject:
   m_ObjectHideFlags: 0

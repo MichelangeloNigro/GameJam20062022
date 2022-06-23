@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Che danno!
   cardName: op card
   type: 2
-  quantityUnlocked: 0
   maximumOwned: 10
+  uid: e2faf6fb0ae2c9c48859f5e804bf58f3
   damage: 20

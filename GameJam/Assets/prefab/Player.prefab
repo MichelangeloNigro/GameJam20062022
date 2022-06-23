@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6876263032650158605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2101546321665074317}
+  m_Layer: 0
+  m_Name: hanr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2101546321665074317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876263032650158605}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8100208322025674834}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &8097492611634943332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,9 +1777,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
-  DeckChangable: []
-  Hand: []
+  tempDeck: []
+  hand: []
   isPlayer: 1
+  lifebar: {fileID: 0}
+  goldDrop: 0
+  handR: {fileID: 2101546321665074317}
+  currWeapon: {fileID: 0}
   managerStatus: {fileID: 906610459770420810}
 --- !u!136 &4559143563676216969
 CapsuleCollider:
@@ -2144,6 +2179,7 @@ Transform:
   - {fileID: 8103830869112647034}
   - {fileID: 8100272460352716378}
   - {fileID: 8103739364883737404}
+  - {fileID: 2101546321665074317}
   m_Father: {fileID: 8099810539196814922}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

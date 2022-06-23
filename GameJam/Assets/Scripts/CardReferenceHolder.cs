@@ -9,16 +9,19 @@ public class CardReferenceHolder : UiCardDrawer {
 	
 	
 	private void Update() {
-		if (GameManager.Instance.unlockedCards[card]!=GameManager.Instance.cardsInDeck[card]) {
-			GetComponent<Button>().interactable = true;
+		if (GameManager.Instance.cardsInDeck.ContainsKey(card)) {
+			if (GameManager.Instance.unlockedCards[card]!=GameManager.Instance.cardsInDeck[card]) {
+				GetComponent<Button>().interactable = true;
+			}
+			else {
+				GetComponent<Button>().interactable = false;
+			}
 		}
-		else {
-			GetComponent<Button>().interactable = false;
-		}
+		
 	}
 
 	public void OnCardClick() {
-		if (GameManager.Instance.cardsInDeck[card]==0) {
+		if (!GameManager.Instance.cardsInDeck.ContainsKey(card)) {
 			var temp=GameObject.Instantiate(GameManager.Instance.deckButtonPrefab,UiManager.Instance.deckSelectedContent.transform);
 			temp.GetComponent<DeckIconReferenceHolder>().card = card;
 		}

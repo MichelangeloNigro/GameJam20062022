@@ -17,5 +17,6 @@ MonoBehaviour:
     con la pistola \xE8 un uomo morto"
   cardName: Shotgun
   type: 2
-  quantityUnlocked: 0
+  maximumOwned: 0
+  uid: a4109ac0ba2540841a96190599b1aa18
   damage: 10

@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Ah mi sento molto meglio ora
   cardName: Succo
   type: 1
-  quantityUnlocked: 4
   maximumOwned: 0
+  uid: 36a4cf9260ff34d47bf4efb4b275eb95
   amount: 10
+  canUnstunnedActor: 0

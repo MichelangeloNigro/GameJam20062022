@@ -16,5 +16,6 @@ MonoBehaviour:
   description: "Nessuno pu\xF2 salvarsi da una coltellata"
   cardName: Coltello
   type: 2
-  quantityUnlocked: 0
+  maximumOwned: 0
+  uid: 4f2ecb5f6e1cf874fb6a911ddc079973
   damage: 15

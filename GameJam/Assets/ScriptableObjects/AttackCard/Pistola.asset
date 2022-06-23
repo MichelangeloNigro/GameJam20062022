@@ -17,5 +17,6 @@ MonoBehaviour:
     non riesca a schivare"
   cardName: Pistola
   type: 2
-  quantityUnlocked: 0
+  maximumOwned: 0
+  uid: 1f7e6ec71d7b8054182750a512437453
   damage: 10

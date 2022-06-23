@@ -40,7 +40,7 @@ public class UiManager : SingletonDDOL<UiManager> {
     deckSelectionContent.transform.Clear();
     var go = EventSystem.current.currentSelectedGameObject;
     foreach (var cardQuantity in GameManager.Instance.unlockedCards) {
-      if (cardQuantity.Key.type == go.GetComponent<CardTypeHolder>().type && GameManager.Instance.cardsInDeck[cardQuantity.Key] <= cardQuantity.Value) {
+      if (cardQuantity.Key.type == go.GetComponent<CardTypeHolder>().type && GameManager.Instance.unlockedCards[cardQuantity.Key] <= cardQuantity.Value) {
         var temp = Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
         temp.GetComponent<CardReferenceHolder>().card = cardQuantity.Key;
       }
@@ -52,7 +52,7 @@ public class UiManager : SingletonDDOL<UiManager> {
     deckSelectionContent.transform.Clear();
     var go = currentCategory;
     foreach (var cardQuantity in GameManager.Instance.unlockedCards) {
-      if (cardQuantity.Key.type == go.GetComponent<CardTypeHolder>().type && GameManager.Instance.cardsInDeck[cardQuantity.Key] <= cardQuantity.Value) {
+      if (cardQuantity.Key.type == go.GetComponent<CardTypeHolder>().type && GameManager.Instance.unlockedCards[cardQuantity.Key] <= cardQuantity.Value) {
         var temp = Instantiate(GameManager.Instance.cardPrefab,deckSelectionContent.transform);
         temp.GetComponent<CardReferenceHolder>().card = cardQuantity.Key;
       }
