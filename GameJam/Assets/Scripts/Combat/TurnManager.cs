@@ -127,10 +127,11 @@ public class TurnManager : MonoBehaviour {
         if (chooser != currentActor) {
             return;
         }
-        
+        chooser.managerStatus.ReduceTurnAfflicted();
         UiManager.Instance.StopShow();
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
+        currentActor.managerStatus.MakeEffect();
         if (enemies.Count != 0) {
             turnPhase = TurnPhase.CardSelection;
         }
@@ -138,6 +139,7 @@ public class TurnManager : MonoBehaviour {
         if (currentActor != playerActor) {
             OnTurnPassed?.Invoke(currentActor);
         }
+        
     }
 
     private void OnActorDeath(ActorWorld actor) {

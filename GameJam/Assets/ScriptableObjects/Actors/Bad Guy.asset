@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0fc2d7f26c3ae428e2d66fbf22225a, type: 3}
   m_Name: Bad Guy
   m_EditorClassIdentifier: 
-  baseHealth: 1
+  baseHealth: 2
   actorPrefab: {fileID: 1451409244940204475, guid: 1295aa4eaa56a7f489dfd0c0489aea8e, type: 3}
   deck:
     keyData:

@@ -11,6 +11,7 @@ public class CardDamage : AttackCard
 		Destroy(chooser.currWeapon);
 		chooser.currWeapon=Instantiate(weaponModel, chooser.handR);
 		GameManager.Instance.StartCoroutine(spawnVfx(chooser,target));
+		
 	}
 
 	public IEnumerator spawnVfx(ActorWorld self, ActorWorld enemy) {
@@ -29,6 +30,9 @@ public class CardDamage : AttackCard
 	protected override void CardEffect() {
 		base.CardEffect();
 		target.ModifyHealth(-damage);
+		if (status != null) {
+			status.ApplyStatus(target,chooser);
+		}
 		chooser.transform.LookAt(target.transform, Vector3.up);
 		Debug.Log("damage"+damage);
 	}

@@ -4,6 +4,9 @@ public class Status {
 	public int numberOfTurnAfflicted;
 
 	public void Paralize(ActorWorld currentActor) {
-		TurnManager.Instance.OnTurnPassed(currentActor);
+		currentActor.FinishTurn();
 	}
+	
+	
+	
 }

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum StatusName {
-	Paralize,
-	DownDefense,
-	LoseHealt
+	Paralize
 }
 
 
@@ -34,10 +32,6 @@ public class StatusManager : MonoBehaviour {
 				switch (i) {
 					case (int)StatusName.Paralize:
 						statusList[i].Paralize(currentActor);
-						break;
-					case (int) StatusName.DownDefense:
-						break;
-					case (int)StatusName.LoseHealt:
 						break;
 				}
 			}
