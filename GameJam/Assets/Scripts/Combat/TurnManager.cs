@@ -148,6 +148,12 @@ public class TurnManager : MonoBehaviour {
         actors.Remove(actor);
         if (actor != playerActor) {
             enemies.Remove(actor);
+        }else {
+            // foreach (var VARIABLE in CardManager.Instance.Deck) {
+            //     VARIABLE.quantityInDeck = 0;
+            // }
+            CardManager.Instance.Deck = null;
+            StartCoroutine(FadeManager.Instance.ReloadScene());
         }
 
     }
@@ -162,13 +168,7 @@ public class TurnManager : MonoBehaviour {
                 OnFinishCombat?.Invoke();
             }
         }
-        else {
-            // foreach (var VARIABLE in CardManager.Instance.Deck) {
-            //     VARIABLE.quantityInDeck = 0;
-            // }
-            CardManager.Instance.Deck = null;
-            StartCoroutine(FadeManager.Instance.ReloadScene());
-        }
+        
         
     }
 }

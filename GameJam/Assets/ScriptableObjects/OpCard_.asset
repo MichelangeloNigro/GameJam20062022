@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77de07ef2f0f5a54faab793d0cb079cc, type: 3}
   m_Name: OpCard_
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: Che danno!
-  cardName: op card
+  image: {fileID: 651237727, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
+  description: fa 20 danno
+  cardName: Sniper
   type: 2
   maximumOwned: 10
   uid: e2faf6fb0ae2c9c48859f5e804bf58f3
   damage: 20
+  weaponModel: {fileID: 0}
+  sound: {fileID: 0}
