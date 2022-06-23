@@ -20,14 +20,21 @@ public class ToolTipManager : MonoBehaviour {
 	}
 
 	public void ShowToolTip(string headerText, string description) {
-		// canvas.gameObject.SetActive(true);
-		// toolTip.transform.position = Input.mousePosition;
-		// header.text = headerText;
-		// text.text = description;
+		canvas.gameObject.SetActive(true);
+		toolTip.transform.position = Input.mousePosition;
+		header.text = headerText;
+		text.text = description;
+		StartCoroutine(Off());
 	}
 
 
 	public void OffToolTip() {
-		//canvas.gameObject.SetActive(false);
+		StartCoroutine(Off());
+	}
+
+	IEnumerator Off() {
+		yield return new WaitForSeconds(1f);
+		canvas.gameObject.SetActive(false);
+		
 	}
 }

@@ -86,6 +86,9 @@ public class TurnManager : MonoBehaviour {
     private void OnCardSelected(ActorWorld actor, GeneralCard card) {
         if (turnPhase == TurnPhase.CardSelection && actor == currentActor) {
             turnPhase = TurnPhase.TargetSelection;
+            if (actor == playerActor) {
+                UiManager.Instance.ShowFeedBack("Scegli un Bersaglio");
+            }
             selectedCard = card;
             OnCardSuccessfullySelected?.Invoke(card);
         }
@@ -95,6 +98,10 @@ public class TurnManager : MonoBehaviour {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
             OnTargetSuccessfullySelected?.Invoke(chooser, target);
             chooser.RemoveCardFromHand(selectedCard);
+            if (chooser == playerActor) {
+                UiManager.Instance.StopShow();
+            }
+
             if (cardUI!=null) {
                 Destroy(cardUI);
             }

@@ -40,12 +40,13 @@ public class UiCardDrawer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
    public void OnPointerEnter(PointerEventData eventData)
    {
       
-      ToolTipManager.instace.ShowToolTip(card.cardName,card.description);
+     ToolTipManager.instace.ShowToolTip(card.cardName,card.description);
    }
    
 
    public void OnPointerExit(PointerEventData eventData) {
       
-      ToolTipManager.instace.OffToolTip();
+      // ToolTipManager.instace.OffToolTip();
    }
+   
 }
