@@ -129,9 +129,7 @@ public class ActorWorld : MonoBehaviour {
     private void RestockDeck() {
         if (isPlayer) {
             tempDeck.Clear();
-            foreach (var card in deck) {
-                tempDeck.Add(card);
-            }
+            tempDeck.AddRange(deck);
             foreach (var card in hand) {
                 tempDeck.Remove(card);
             }
