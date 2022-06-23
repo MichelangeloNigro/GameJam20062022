@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour {
     public enum TurnPhase {
@@ -133,6 +134,10 @@ public class TurnManager : MonoBehaviour {
     }
 
     public void PassTurn(ActorWorld chooser) {
+        foreach (var VARIABLE in actors) {
+            VARIABLE.arrowTurn.gameObject.SetActive(false);
+            
+        }
         if (chooser != currentActor) {
             return;
         }
@@ -172,6 +177,10 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
+    public void wrapperReload() {
+        StartCoroutine(FadeManager.Instance.ReloadScene());
+    }
+
     private void OnFinishDeathAnim(ActorWorld actor) {
         if (actor != playerActor) {
             GameManager.Instance.AddGold(actor.goldDrop);
@@ -184,5 +193,23 @@ public class TurnManager : MonoBehaviour {
         }
         
         
+    }
+
+    private void Update() {
+        if (currentActor!=playerActor) {
+            foreach (var VARIABLE in UiManager.Instance.handContent.GetComponentsInChildren<Button>()) {
+                VARIABLE.interactable = false;
+            }
+        }
+        else {
+            foreach (var VARIABLE in UiManager.Instance.handContent.GetComponentsInChildren<Button>()) {
+                VARIABLE.interactable = true;
+            }
+        }
+        if (currentActor) {
+            currentActor.arrowTurn.gameObject.SetActive(true);
+
+        }
+       
     }
 }

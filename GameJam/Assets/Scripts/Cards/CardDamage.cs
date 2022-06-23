@@ -20,6 +20,7 @@ public class CardDamage : AttackCard
 		yield return new WaitForSeconds(0.4f);
 		if (enemy) {
 			Instantiate(GameManager.Instance.bloodVFX, enemy.transform.position,enemy.transform.rotation);
+			enemy.animator.SetTrigger("hitReaction");
 		}
 	}
 

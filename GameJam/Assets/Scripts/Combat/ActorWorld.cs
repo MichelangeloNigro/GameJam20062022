@@ -8,175 +8,173 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class ActorWorld : MonoBehaviour {
-    [SerializeField, ReadOnly] private float maxHealth;
-    [SerializeField, ReadOnly] private float currentHealth;
-    public float MaxHealth => maxHealth;
-    public float CurrentHealth => currentHealth;
-    private List<GeneralCard> deck = new();
-    public List<GeneralCard> tempDeck = new();
-    public List<GeneralCard> hand;
-    public bool isPlayer;
-    private BehaviorTree behaviorTree;
-    public Image lifebar;
-    public int goldDrop;
-    public Transform handR;
-    public GameObject currWeapon;
-    public int defense;
-    public int extraDamage;
-    public Action<ActorWorld, GeneralCard> OnCardSelected;
-    public Action<ActorWorld, ActorWorld> OnTargetSelected;
-    public Action<ActorWorld> OnDeath;
-    public Action<ActorWorld> OnFinishDeathAnimation;
-    public Action<ActorWorld> OnFinishedTurn;
-    public Action OnCardUsed;
-    public GameObject statusContent;
+	[SerializeField, ReadOnly] private float maxHealth;
+	[SerializeField, ReadOnly] private float currentHealth;
+	public float MaxHealth => maxHealth;
+	public float CurrentHealth => currentHealth;
+	private List<GeneralCard> deck = new();
+	public List<GeneralCard> tempDeck = new();
+	public List<GeneralCard> hand;
+	public bool isPlayer;
+	private BehaviorTree behaviorTree;
+	public Image lifebar;
+	public Image arrowTurn;
+	public int goldDrop;
+	public Transform handR;
+	public GameObject currWeapon;
+	public int defense;
+	public int extraDamage;
+	public Action<ActorWorld, GeneralCard> OnCardSelected;
+	public Action<ActorWorld, ActorWorld> OnTargetSelected;
+	public Action<ActorWorld> OnDeath;
+	public Action<ActorWorld> OnFinishDeathAnimation;
+	public Action<ActorWorld> OnFinishedTurn;
+	public Action OnCardUsed;
+	public GameObject statusContent;
 
-    [NonSerialized] public Animator animator;
+	[NonSerialized] public Animator animator;
 
-    public StatusManager managerStatus;
-    
-    private int maxCardsInHand;
+	public StatusManager managerStatus;
 
-    private void Awake() {
-        animator = GetComponent<Animator>();
-    }
+	private int maxCardsInHand;
 
-    private void PopulateHand() {
-        hand.Clear();
-        for (int i = 0; i < maxCardsInHand; i++) {
-            int temp = Random.Range(0, tempDeck.Count);
-            if (isPlayer) {
-                var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
-                tempGameObject.GetComponent<CardGameplay>().card = tempDeck[temp]; 
-            }
-            hand.Add(tempDeck[temp]);
-            tempDeck.Remove(tempDeck[temp]);
-        }
-    }
+	private void Awake() {
+		animator = GetComponent<Animator>();
+	}
 
-    public void Draw() {
-        if (tempDeck.Count> 0 && hand.Count<=maxCardsInHand) {
-            int temp = Random.Range(0, tempDeck.Count);
-            if (isPlayer) {
-                var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab,UiManager.Instance.handContent.transform);
-                tempGameObject.GetComponent<CardGameplay>().card = tempDeck[temp];
-            }
-            hand.Add(tempDeck[temp]);
-            tempDeck.Remove(tempDeck[temp]);
-        }
-    }
-    #region Turn Related Methods
-    
-    public void Init(Actor actor) {
-        maxHealth = actor.baseHealth;
-        maxCardsInHand = actor.maxCardsInHand;
-        currentHealth = actor.baseHealth;
-        if (isPlayer) {
-            lifebar = GameObject.FindWithTag("Player").GetComponent<Image>();
-            statusContent = GameObject.FindWithTag("status");
-            if (CardManager.Instance.Deck.Count < actor.maxCardsInHand) {
-                maxCardsInHand = CardManager.Instance.Deck.Count;
-            }
-            deck = CardManager.Instance.Deck;
-            tempDeck.AddRange(deck);
-        }
-        else {
-            var actorDeck = actor.deck[0];
-            if (TileManager.instance.wave > 3) {
-                actorDeck = actor.deck[1];
-            }
-            foreach (var card in actorDeck) {
-                for (int i = 0; i < card.Value; i++) {
-                    tempDeck.Add(card.Key);
-                }
-            }
-            maxHealth += TileManager.instance.wave * 2;
-            currentHealth = maxHealth;
-        }
-        PopulateHand();
-        //currentHealth = actor.baseHealth;
-        behaviorTree = GetComponent<BehaviorTree>();
-        TurnManager.Instance.Subscribe(this);
-        TurnManager.Instance.OnTurnPassed += ExecuteBehavior;
-        TurnManager.Instance.OnFinishCombat += RestockDeck;
-        TurnManager.Instance.OnFinishCombat += PopulateHand;
-    }
+	private void PopulateHand() {
+		hand.Clear();
+		for (int i = 0; i < maxCardsInHand; i++) {
+			int temp = Random.Range(0, tempDeck.Count);
+			if (isPlayer) {
+				var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab, UiManager.Instance.handContent.transform);
+				tempGameObject.GetComponent<CardGameplay>().card = tempDeck[temp];
+			}
+			hand.Add(tempDeck[temp]);
+			tempDeck.Remove(tempDeck[temp]);
+		}
+	}
 
+	public void Draw() {
+		if (tempDeck.Count > 0 && hand.Count <= maxCardsInHand) {
+			int temp = Random.Range(0, tempDeck.Count);
+			if (isPlayer) {
+				var tempGameObject = Instantiate(GameManager.Instance.cardGameplayPrefab, UiManager.Instance.handContent.transform);
+				tempGameObject.GetComponent<CardGameplay>().card = tempDeck[temp];
+			}
+			hand.Add(tempDeck[temp]);
+			tempDeck.Remove(tempDeck[temp]);
+		}
+	}
 
+	#region Turn Related Methods
 
-    private void OnDisable() {
-        TurnManager.Instance.OnTurnPassed -= ExecuteBehavior;
-        TurnManager.Instance.OnFinishCombat -= RestockDeck;
-        TurnManager.Instance.OnFinishCombat -= PopulateHand;
-    }
+	public void Init(Actor actor) {
+		maxHealth = actor.baseHealth;
+		maxCardsInHand = actor.maxCardsInHand;
+		currentHealth = actor.baseHealth;
+		if (isPlayer) {
+			lifebar = GameObject.FindWithTag("Player").GetComponent<Image>();
+			statusContent = GameObject.FindWithTag("status");
+			if (CardManager.Instance.Deck.Count < actor.maxCardsInHand) {
+				maxCardsInHand = CardManager.Instance.Deck.Count;
+			}
+			deck = CardManager.Instance.Deck;
+			tempDeck.AddRange(deck);
+		}
+		else {
+			var actorDeck = actor.deck[0];
+			if (TileManager.instance.wave > 3) {
+				actorDeck = actor.deck[1];
+			}
+			foreach (var card in actorDeck) {
+				for (int i = 0; i < card.Value; i++) {
+					tempDeck.Add(card.Key);
+				}
+			}
+			maxHealth += TileManager.instance.wave * 2;
+			currentHealth = maxHealth;
+		}
+		PopulateHand();
+		//currentHealth = actor.baseHealth;
+		behaviorTree = GetComponent<BehaviorTree>();
+		TurnManager.Instance.Subscribe(this);
+		TurnManager.Instance.OnTurnPassed += ExecuteBehavior;
+		TurnManager.Instance.OnFinishCombat += RestockDeck;
+		TurnManager.Instance.OnFinishCombat += PopulateHand;
+	}
 
-    public void SelectCard(GeneralCard card) {
-        OnCardSelected?.Invoke(this, card);
-    }
+	private void OnDisable() {
+		TurnManager.Instance.OnTurnPassed -= ExecuteBehavior;
+		TurnManager.Instance.OnFinishCombat -= RestockDeck;
+		TurnManager.Instance.OnFinishCombat -= PopulateHand;
+	}
 
-    public void SelectTarget(ActorWorld actor) {
-        OnTargetSelected(this, actor);
-    }
+	public void SelectCard(GeneralCard card) {
+		OnCardSelected?.Invoke(this, card);
+	}
 
-    public void RemoveCardFromHand(GeneralCard card) {
-        hand.Remove(card);
-    }
+	public void SelectTarget(ActorWorld actor) {
+		OnTargetSelected(this, actor);
+	}
 
-    private void OnMouseDown() {
-        TurnManager.Instance.PlayerActor.SelectTarget(this);        
-    }
+	public void RemoveCardFromHand(GeneralCard card) {
+		hand.Remove(card);
+	}
 
-    private void ExecuteBehavior(ActorWorld actorWorld) {
-        if (this == actorWorld) {
-            behaviorTree.EnableBehavior();
-        }
-    }
+	private void OnMouseDown() {
+		TurnManager.Instance.PlayerActor.SelectTarget(this);
+	}
 
-    public void FinishTurn() {
-        OnFinishedTurn?.Invoke(this);
-        Debug.Log("finishTurn");
-    }
+	private void ExecuteBehavior(ActorWorld actorWorld) {
+		if (this == actorWorld) {
+			behaviorTree.EnableBehavior();
+		}
+	}
 
-    public void UseCard() {
-        OnCardUsed?.Invoke();
-    }
+	public void FinishTurn() {
+		OnFinishedTurn?.Invoke(this);
+		Debug.Log("finishTurn");
+	}
 
-    private void RestockDeck() {
-        if (isPlayer) {
-            tempDeck.Clear();
-           tempDeck.AddRange(deck);
-           UiManager.Instance.handContent.transform.Clear();
-           // foreach (var card in hand) {
-           //     tempDeck.Remove(card);
-           // }
-        }
-    }
-    
-    #endregion
+	public void UseCard() {
+		OnCardUsed?.Invoke();
+	}
 
-    #region Health Related Methods
+	private void RestockDeck() {
+		if (isPlayer) {
+			tempDeck.Clear();
+			tempDeck.AddRange(deck);
+			UiManager.Instance.handContent.transform.Clear();
+			// foreach (var card in hand) {
+			//     tempDeck.Remove(card);
+			// }
+		}
+	}
 
-    public void ModifyHealth(float amount) {
-        var temp = currentHealth;
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UiManager.Instance.setLife(currentHealth,temp,lifebar);
-        if (currentHealth <= 0) {
-            Die();
-            animator.SetTrigger("Death");
-        }
-    }
+	#endregion
 
-    private void Die() {
-        OnDeath?.Invoke(this);
-    }
+	#region Health Related Methods
 
-    private void FinishAnimationDie() {
-        OnFinishDeathAnimation?.Invoke(this);
-    }
+	public void ModifyHealth(float amount) {
+		var temp = currentHealth;
+		currentHealth += amount;
+		currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+		UiManager.Instance.setLife(currentHealth, temp, lifebar);
+		if (currentHealth <= 0) {
+			Die();
+			animator.SetTrigger("Death");
+		}
+	}
 
-    #endregion
+	private void Die() {
+		OnDeath?.Invoke(this);
+	}
 
+	private void FinishAnimationDie() {
+		OnFinishDeathAnimation?.Invoke(this);
+	}
 
-    
+	#endregion
+
 }

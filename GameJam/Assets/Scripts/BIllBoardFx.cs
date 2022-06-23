@@ -5,17 +5,15 @@ using UnityEngine;
 public class BIllBoardFx : MonoBehaviour
 {
     private Transform camTransform;
-
-    Quaternion originalRotation;
-
+    
     void Start() {
-        camTransform=FindObjectOfType<Camera>().transform;
-        originalRotation = transform.rotation;
+        camTransform = Camera.main.gameObject.transform;
     }
 
     void Update()
     {
-        transform.rotation = camTransform.rotation * originalRotation;   
+        transform.LookAt(camTransform,Vector3.up);
+        
     }
     
 }
