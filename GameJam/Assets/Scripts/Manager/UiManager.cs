@@ -22,7 +22,7 @@ public class UiManager : SingletonDDOL<UiManager> {
   public Action onFinishDeck;
   public TMP_Text lifeRemain;
   public TMP_Text goldUi;
-
+  public TMP_Text feedbackText;
 
   public IEnumerator uiGoldOn(int i) {
     goldUi.text = $"+{i}";
@@ -107,4 +107,16 @@ public class UiManager : SingletonDDOL<UiManager> {
     life.fillAmount = lifeTest /(float) 1;
     life.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(lifeTest / 1f, 2));
   }
+
+  public void ShowFeedBack(string text) {
+    
+    feedbackText.gameObject.SetActive(true);
+    feedbackText.text = text;
+  }
+
+  public void StopShow() {
+    feedbackText.gameObject.SetActive(false);
+  }
+
+
 }
