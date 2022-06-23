@@ -157,9 +157,10 @@ public class ActorWorld : MonoBehaviour {
     #region Health Related Methods
 
     public void ModifyHealth(float amount) {
+        var temp = currentHealth;
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UiManager.Instance.setLife(currentHealth,maxHealth,lifebar);
+        UiManager.Instance.setLife(currentHealth,temp,lifebar);
         if (currentHealth <= 0) {
             Die();
             animator.SetTrigger("Death");

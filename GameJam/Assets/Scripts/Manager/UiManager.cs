@@ -102,13 +102,47 @@ public class UiManager : SingletonDDOL<UiManager> {
   [OnValueChanged("setLifeEditor")]
   public float lifeTest;
   
-  public void setLife(float currentLife, float totalLife, Image lifebar) {
-    lifebar.fillAmount = currentLife / totalLife;
-    lifebar.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(currentLife /totalLife, 2));
+  public void setLife(float currentLife, float damage, Image lifebar) {
+    StartCoroutine(lifeLerp(currentLife,damage,lifebar));
     if (lifebar == life) { 
-    lifeRemain.text = currentLife + " / " + totalLife;
+    lifeRemain.text = currentLife + " / " + TurnManager.Instance.PlayerActor.MaxHealth;
     }
-  } 
+  }
+
+  public IEnumerator lifeLerp(float currentLife, float previous, Image lifebar) {
+    float temp2=0;
+    float temp = previous;
+    if (previous>currentLife) {
+      while (temp>currentLife) {
+        temp = Mathf.Lerp(temp,currentLife,temp2);
+        temp2 += Time.deltaTime;
+        lifebar.fillAmount = temp / TurnManager.Instance.PlayerActor.MaxHealth;
+        lifebar.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(temp /TurnManager.Instance.PlayerActor.MaxHealth, 2));
+        if (temp-currentLife<0.1f) {
+          temp = currentLife;
+          lifebar.fillAmount = temp / TurnManager.Instance.PlayerActor.MaxHealth;
+          lifebar.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(temp /TurnManager.Instance.PlayerActor.MaxHealth, 2));
+        }
+        yield return null;
+      }
+    }
+    else {
+      while (temp<currentLife) {
+        temp = Mathf.Lerp(temp,currentLife,temp2);
+        temp2 += Time.deltaTime;
+        lifebar.fillAmount = temp / TurnManager.Instance.PlayerActor.MaxHealth;
+        lifebar.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(temp /TurnManager.Instance.PlayerActor.MaxHealth, 2));
+        if (currentLife-temp<0.1f) {
+          temp = currentLife;
+          lifebar.fillAmount = temp / TurnManager.Instance.PlayerActor.MaxHealth;
+          lifebar.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(temp /TurnManager.Instance.PlayerActor.MaxHealth, 2));
+        }
+        yield return null;
+      }
+    }
+   
+    
+  }
   public void setLifeEditor() {
     life.fillAmount = lifeTest /(float) 1;
     life.color=Color.Lerp(Color.red, Color.green, Mathf.Pow(lifeTest / 1f, 2));
