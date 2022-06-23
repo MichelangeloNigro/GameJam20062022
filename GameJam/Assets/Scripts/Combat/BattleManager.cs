@@ -1,10 +1,16 @@
+using System;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour {
 	public GeneralCard card;
 	public ActorWorld chooser;
 	public ActorWorld target;
-	
+	public static BattleManager instance;
+
+	private void Awake() {
+		instance = this;
+	}
+
 	public void Init() {
 		TurnManager.Instance.OnCardSuccessfullySelected += SaveCard;
 		TurnManager.Instance.OnTargetSuccessfullySelected += SaveActors;

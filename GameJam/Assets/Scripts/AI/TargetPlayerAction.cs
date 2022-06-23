@@ -12,7 +12,12 @@ public class TargetPlayerAction : Action
 
 	public override TaskStatus OnUpdate()
 	{
-		actorWorld.SelectTarget(TurnManager.Instance.PlayerActor);
+		if (BattleManager.instance.card.type != CardType.AttackCard) {
+			actorWorld.SelectTarget(actorWorld);
+		}
+		else {
+			actorWorld.SelectTarget(TurnManager.Instance.PlayerActor);
+		}
 		return TaskStatus.Success;
 	}
 }

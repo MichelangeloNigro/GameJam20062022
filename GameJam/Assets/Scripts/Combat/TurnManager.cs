@@ -97,14 +97,19 @@ public class TurnManager : MonoBehaviour {
 
     private void OnTargetSelected(ActorWorld chooser, ActorWorld target) {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
-            OnTargetSuccessfullySelected?.Invoke(chooser, target);
-            chooser.RemoveCardFromHand(selectedCard);
-            if (chooser == playerActor) {
-                UiManager.Instance.StopShow();
+            if (BattleManager.instance.card.type == CardType.AttackCard && target==currentActor) {
+                Debug.Log("sbagliato");
             }
+            else {
+                OnTargetSuccessfullySelected?.Invoke(chooser, target);
+                chooser.RemoveCardFromHand(selectedCard);
+                if (chooser == playerActor) {
+                    UiManager.Instance.StopShow();
+                }
 
-            if (cardUI!=null) {
-                Destroy(cardUI);
+                if (cardUI != null) {
+                    Destroy(cardUI);
+                }
             }
         }
         else {
