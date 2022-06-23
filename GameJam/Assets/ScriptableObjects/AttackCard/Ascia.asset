@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8fd324595d3eb747a0ccf0d30d2a960, type: 3}
-  m_Name: Coltello
+  m_Name: Ascia
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: "Nessuno pu\xF2 salvarsi da una coltellata"
-  cardName: Coltello
+  image: {fileID: -563189767, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
+  description: fa 15 danni
+  cardName: Ascia
   type: 2
   maximumOwned: 0
   uid: 4f2ecb5f6e1cf874fb6a911ddc079973
   damage: 15
+  weaponModel: {fileID: 0}
+  sound: {fileID: 0}

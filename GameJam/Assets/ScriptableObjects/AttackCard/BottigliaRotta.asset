@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fd324595d3eb747a0ccf0d30d2a960, type: 3}
   m_Name: BottigliaRotta
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: "Hai solo una bottiglia rotta nei paraggi? Spera di essere pi\xF9
-    veloce del tuo nemico"
+  image: {fileID: -1296736984, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
+  description: fa 5 danni
   cardName: Bottiglia rotta
   type: 2
   maximumOwned: 0
   uid: 82c786e64d9757f4a936681c021f34ab
   damage: 5
+  weaponModel: {fileID: 0}
+  sound: {fileID: 0}

@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8fd324595d3eb747a0ccf0d30d2a960, type: 3}
-  m_Name: Lazzo
+  m_Name: Coltellata
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: "Mai sottovalutare un lazzo: non far\xE0 molto danno ma il tuo nemico
-    non potr\xE0 muoversi per un po'"
-  cardName: Lazzo
+  image: {fileID: 1265605675, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
+  description: fa 5 danni
+  cardName: Coltellata
   type: 2
   maximumOwned: 0
   uid: 55f4f3f5e2f1d3346bb2eeb6c268a416
   damage: 5
+  weaponModel: {fileID: 0}
+  sound: {fileID: 0}

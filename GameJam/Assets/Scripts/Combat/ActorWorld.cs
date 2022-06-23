@@ -71,9 +71,7 @@ public class ActorWorld : MonoBehaviour {
                 maxCardsInHand = CardManager.Instance.Deck.Count;
             }
             deck = CardManager.Instance.Deck;
-            foreach (var card in deck) {
-                tempDeck.Add(card);
-            }
+            tempDeck.AddRange(deck);
         }
         else {
             foreach (var card in actor.deck) {
@@ -89,6 +87,8 @@ public class ActorWorld : MonoBehaviour {
         TurnManager.Instance.OnTurnPassed += ExecuteBehavior;
         TurnManager.Instance.OnFinishCombat += RestockDeck;
     }
+
+
 
     private void OnDisable() {
         TurnManager.Instance.OnTurnPassed -= ExecuteBehavior;

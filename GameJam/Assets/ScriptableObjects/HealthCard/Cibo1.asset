@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5156e0ba99f88d240803692373d617dc, type: 3}
   m_Name: Cibo1
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: 
-  cardName: 
+  image: {fileID: 642354026, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
+  description: recupera 5 ps
+  cardName: Cibo per Cani
   type: 1
   maximumOwned: 0
   uid: 5b0fd8bee50c17248a560a90d741528e
