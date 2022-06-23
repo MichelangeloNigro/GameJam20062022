@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -16,6 +17,8 @@ public class ActorWorld : MonoBehaviour {
     private int cardAvviable;
     private BehaviorTree behaviorTree;
     public Image lifebar;
+    public int goldDrop;
+    public TMP_Text goldText;
 
     public Action<ActorWorld, GeneralCard> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;

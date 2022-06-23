@@ -33,8 +33,9 @@ public class TurnManager : MonoBehaviour {
     
     private ActorWorld playerActor;
     public ActorWorld PlayerActor => playerActor;
-    private int goldRecived;
+    public int goldRecived;
     public GameObject cardUI;
+    public GameObject moneyVfx;
 
     private void Awake() {
         Instance = this;
@@ -130,12 +131,20 @@ public class TurnManager : MonoBehaviour {
         actor.OnDeath -= OnActorDeath;
         actors.Remove(actor);
         if (actor != playerActor) {
+            Debug.Log("enemy");
             enemies.Remove(actor);
+            goldRecived += actor.goldDrop;
+            Instantiate(moneyVfx, actor.transform.position,actor.transform.rotation,FindObjectOfType<TileManager>().currentTiles[0].transform);
+            UiManager.Instance.StartCoroutine( UiManager.Instance.uiGoldOn(actor.goldDrop));
             Destroy(actor.gameObject);
         }
         else {
             GameManager.Instance.AddGold(goldRecived);
             goldRecived = 0;
+            foreach (var VARIABLE in CardManager.Instance.Deck) {
+                VARIABLE.quantityInDeck = 0;
+            }
+            CardManager.Instance.Deck = null;
             StartCoroutine(FadeManager.Instance.ReloadScene());
         }
     }

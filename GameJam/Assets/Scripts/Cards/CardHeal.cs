@@ -10,6 +10,8 @@ public class CardHeal : HealthCard
 
 	protected override void CardEffect() {
 		base.CardEffect();
+		target.ModifyHealth(amount);
+		chooser.transform.LookAt(target.transform, Vector3.up);
 		Debug.Log("Heal");
 	}
 }

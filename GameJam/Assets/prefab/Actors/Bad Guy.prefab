@@ -568,10 +568,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  isStunned: 0
   DeckChangable: []
   Hand: []
   isPlayer: 0
   lifebar: {fileID: 3765642455774552118}
+  goldDrop: 20
+  goldText: {fileID: 0}
   managerStatus: {fileID: 4297169854096400453}
 --- !u!114 &4689768707023244726
 MonoBehaviour:
@@ -1910,7 +1913,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

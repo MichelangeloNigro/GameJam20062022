@@ -21,8 +21,15 @@ public class UiManager : SingletonDDOL<UiManager> {
   public GameObject doneButton;
   public Action onFinishDeck;
   public TMP_Text lifeRemain;
- 
+  public TMP_Text goldUi;
 
+
+  public IEnumerator uiGoldOn(int i) {
+    goldUi.text = $"+{i}";
+    goldUi.gameObject.transform.parent.gameObject.SetActive(true);
+    yield return new WaitForSeconds(0.5f);
+    goldUi.gameObject.transform.parent.gameObject.SetActive(false);
+  }
   private void Start() {
     
       SetInitialCategory();
@@ -67,16 +74,18 @@ public class UiManager : SingletonDDOL<UiManager> {
     //CardManager.Instance.getHand();
   }
   private void Update() {
-    if (CardManager.Instance.Deck.Count <= 0) {
+    if (CardManager.Instance.Deck!=null &&CardManager.Instance.Deck.Count <= 0) {
       doneButton.SetActive(false);
     }
     else {
       doneButton.SetActive(true);
     }
+    if (CardManager.Instance.Deck!=null) {
       deckCardsNumber.text = $"{CardManager.Instance.Deck.Count}/{CardManager.Instance.maxNumberOfCard}";
       if (TurnManager.Instance.PlayerActor) {
         deckCardsRemaning.text = $"{TurnManager.Instance.PlayerActor.DeckChangable.Count}/{CardManager.Instance.Deck.Count}";
       }
+    }
   }
 
   public void ChangeCurrentCategory() {
