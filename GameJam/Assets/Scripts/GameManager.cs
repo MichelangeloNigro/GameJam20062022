@@ -16,7 +16,7 @@ public class GameManager : SingletonDDOL<GameManager> , ISavable {
     public GameObject bloodVFX;
     public TMP_Text goldCanvas;
 
-    private void OnEnable() {
+    private void Start() {
         // foreach (var card in unlockedCards) {
         //     cardsInDeck.Add(card.Key, 0);
         // }
