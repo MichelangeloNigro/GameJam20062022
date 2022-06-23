@@ -15,12 +15,15 @@ MonoBehaviour:
   baseHealth: 2
   actorPrefab: {fileID: 1451409244940204475, guid: 1295aa4eaa56a7f489dfd0c0489aea8e, type: 3}
   deck:
-    keyData:
+  - keyData:
     - {fileID: 11400000, guid: a55562271f1f3564faf12c0a802c474c, type: 2}
     - {fileID: 11400000, guid: 7b5c1be1ebb674c4f8baa76242c7abf3, type: 2}
-    - {fileID: 11400000, guid: 6c4fcaed5bcfe184ab9cab1112a86366, type: 2}
     - {fileID: 11400000, guid: c69ae0d6e7cc13542822205c78de867f, type: 2}
+    valueData: 0a0000000500000005000000
+  - keyData:
+    - {fileID: 11400000, guid: 7b5c1be1ebb674c4f8baa76242c7abf3, type: 2}
+    - {fileID: 11400000, guid: 6c4fcaed5bcfe184ab9cab1112a86366, type: 2}
     - {fileID: 11400000, guid: 96606374493b8e240bfc31509e5fd64d, type: 2}
-    valueData: 0a00000005000000030000000500000002000000
+    valueData: 050000000a00000005000000
   maxNumberOfCard: 30
   maxCardsInHand: 5

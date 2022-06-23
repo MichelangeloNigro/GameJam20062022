@@ -78,7 +78,11 @@ public class ActorWorld : MonoBehaviour {
             tempDeck.AddRange(deck);
         }
         else {
-            foreach (var card in actor.deck) {
+            var actorDeck = actor.deck[0];
+            if (TileManager.instance.wave > 3) {
+                actorDeck = actor.deck[1];
+            }
+            foreach (var card in actorDeck) {
                 for (int i = 0; i < card.Value; i++) {
                     tempDeck.Add(card.Key);
                 }
