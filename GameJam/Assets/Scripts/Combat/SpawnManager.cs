@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private Actor[] enemies;
     [SerializeField] private Transform[] spawnPoints;
-
+    
     private UiManager uiManager;
     [SerializeField] private TileManager tileManager;
 

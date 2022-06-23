@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.WSA;
 using Random = UnityEngine.Random;
 
 public class ActorWorld : MonoBehaviour {
@@ -65,6 +66,7 @@ public class ActorWorld : MonoBehaviour {
     public void Init(Actor actor) {
         maxHealth = actor.baseHealth;
         maxCardsInHand = actor.maxCardsInHand;
+        currentHealth = actor.baseHealth;
         if (isPlayer) {
             lifebar = GameObject.FindWithTag("Player").GetComponent<Image>();
             if (CardManager.Instance.Deck.Count < actor.maxCardsInHand) {
@@ -79,9 +81,11 @@ public class ActorWorld : MonoBehaviour {
                     tempDeck.Add(card.Key);
                 }
             }
+            maxHealth += TileManager.instance.wave * 2;
+            currentHealth = maxHealth;
         }
         PopulateHand();
-        currentHealth = actor.baseHealth;
+        //currentHealth = actor.baseHealth;
         behaviorTree = GetComponent<BehaviorTree>();
         TurnManager.Instance.Subscribe(this);
         TurnManager.Instance.OnTurnPassed += ExecuteBehavior;

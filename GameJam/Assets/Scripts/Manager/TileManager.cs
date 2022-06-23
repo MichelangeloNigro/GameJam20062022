@@ -11,7 +11,8 @@ public class TileManager : MonoBehaviour {
    private PlayerAnimator playerAnimator;
    [SerializeField] private  float shiftXtile=25;
    [SerializeField] private float timerLerp;
-
+   public static TileManager instance;
+   public int wave;
    public Action OnFinishRunning;
 
    private void Start() {
@@ -21,6 +22,10 @@ public class TileManager : MonoBehaviour {
       destroyer.hasDestoyed += SpawnNewTile;
       TurnManager.Instance.OnActorSubscribed += SavePlayerAnimator;
       TurnManager.Instance.OnFinishCombat += MoveTiles;
+   }
+
+   private void Awake() {
+      instance = this;
    }
 
    private void SavePlayerAnimator(ActorWorld actor) {
@@ -46,6 +51,7 @@ public class TileManager : MonoBehaviour {
 
 
    public void MoveTiles() {
+      wave += 1;
       playerAnimator.StartRunning();
       StartCoroutine(MoveTileManager());
    }
