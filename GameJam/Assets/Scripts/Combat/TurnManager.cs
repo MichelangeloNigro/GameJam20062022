@@ -33,7 +33,8 @@ public class TurnManager : MonoBehaviour {
     
     private ActorWorld playerActor;
     public ActorWorld PlayerActor => playerActor;
-    private int goldRecived;
+    public int goldRecived;
+    public GameObject moneyVfx;
 
     public GeneralCard selectedCard;
     public GameObject cardUI;
@@ -76,7 +77,7 @@ public class TurnManager : MonoBehaviour {
     }
     
     private void StartBattle() {
-        goldRecived = enemies.Count;
+        goldRecived += enemies.Count;
         currentActor = actors[0];
         currentIndex = 0;
         turnPhase = TurnPhase.CardSelection;
@@ -136,11 +137,17 @@ public class TurnManager : MonoBehaviour {
         actors.Remove(actor);
         if (actor != playerActor) {
             enemies.Remove(actor);
+            GameManager.Instance.AddGold(actor.goldDrop);
+            Instantiate(moneyVfx, actor.transform.position,actor.transform.rotation,FindObjectOfType<TileManager>().currentTiles[0].transform);
+            UiManager.Instance.StartCoroutine( UiManager.Instance.uiGoldOn(actor.goldDrop));
             Destroy(actor.gameObject);
+           
         }
         else {
-            GameManager.Instance.AddGold(goldRecived);
-            goldRecived = 0;
+            // foreach (var VARIABLE in CardManager.Instance.Deck) {
+            //     VARIABLE.quantityInDeck = 0;
+            // }
+            CardManager.Instance.Deck = null;
             StartCoroutine(FadeManager.Instance.ReloadScene());
         }
     }

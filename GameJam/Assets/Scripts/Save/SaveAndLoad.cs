@@ -26,7 +26,7 @@ public class SaveAndLoad : SingletonDDOL<SaveAndLoad> {
         // }
 
         if (Input.GetKeyDown(KeyCode.F4)) {
-            StartCoroutine(Load());
+            
         }
 
         if (Input.GetKeyDown(KeyCode.F2)) {
@@ -37,10 +37,6 @@ public class SaveAndLoad : SingletonDDOL<SaveAndLoad> {
  
 
     public void Save() {
-        ScreenCapture.CaptureScreenshot(Application.dataPath + $"/saves/screen{slot}.png");
-        ToBeSaved.activeGenerator.Clear();
-        ToBeSaved.pickedUp.Clear();
-        ToBeSaved.currScene = SceneManager.GetActiveScene().name;
         StartSave();
         XmlSerializer serializer = new XmlSerializer(typeof(Data));
         var encoding = Encoding.GetEncoding("UTF-8");
@@ -60,29 +56,9 @@ public class SaveAndLoad : SingletonDDOL<SaveAndLoad> {
         Time.timeScale = 1f;
     }
 
-    public IEnumerator Load() {
-        if (operation==null) {
-            if (File.Exists(Application.dataPath + $"/saves/saveEncrypted{slot}.xml")) {
-                Time.timeScale = 1f;
-               
-                var data = ReadFile();
-                yield return loadSceneAsync(data.currScene);
-               
-            }
-            else {
-                yield return loadSceneAsync(SceneManager.GetActiveScene().name); 
-            }
-        }
-    }
-    
+ 
 
-    public void LoadScene() {
-        if (File.Exists(Application.dataPath + $"/saves/saveEncrypted{slot}.xml")) {
-            var data = ReadFile();
-            SceneManager.LoadScene(data.currScene);
-        }
-    }
-
+   
     public Data ReadFileInSlot(int i) {
         DecryptFile(Application.dataPath + $"/saves/saveEncrypted{i}.xml", Application.dataPath + $"/saves/save{i}.xml");
         string filePath = Application.dataPath + $"/saves/save{i}.xml";
@@ -113,18 +89,8 @@ public class SaveAndLoad : SingletonDDOL<SaveAndLoad> {
         return data;
     }
 
-    public void Reload(Scene scene, LoadSceneMode mode) {
-        if (File.Exists(Application.dataPath + $"/saves/save{slot}.xml")) {
-            var data = ReadFile();
-            if (data.currScene == scene.name) {
-                StartCoroutine(Load());
-            }
-        }
-    }
+ 
 
-    public void LoadWrapper() {
-        StartCoroutine(Load());
-    }
 
     public void DeleteSave() {
         if (File.Exists(Application.dataPath + $"/saves/save{slot}.xml")) {

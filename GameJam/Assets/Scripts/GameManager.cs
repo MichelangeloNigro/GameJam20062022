@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Riutilizzabile;
 using UnityEngine;
 
-public class GameManager : SingletonDDOL<GameManager> {
+public class GameManager : SingletonDDOL<GameManager> , ISavable {
     public CardQuantity unlockedCards;
     public Dictionary<GeneralCard, int> cardsInDeck = new();
     public GameObject cardPrefab;
@@ -13,9 +13,14 @@ public class GameManager : SingletonDDOL<GameManager> {
     public int money;
 
     private void OnEnable() {
+      //  SaveAndLoad.Instance.StartSave += OnSave;
         foreach (var card in unlockedCards) {
             cardsInDeck.Add(card.Key, 0);
         }
+    }
+
+    private void OnDisable() {
+        //SaveAndLoad.Instance.StartSave -= OnSave;
     }
 
     public void AddCardToDeck(GeneralCard card) {
@@ -38,5 +43,9 @@ public class GameManager : SingletonDDOL<GameManager> {
     
     public void AddGold(int goldObtained) {
         money += goldObtained;
+    }
+
+    public void OnSave() {
+        
     }
 }
