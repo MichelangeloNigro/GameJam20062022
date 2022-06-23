@@ -24,6 +24,7 @@ public class ToolTipManager : MonoBehaviour {
 		toolTip.transform.position = Input.mousePosition;
 		header.text = headerText;
 		text.text = description;
+		StopAllCoroutines();
 		StartCoroutine(Off());
 	}
 
@@ -33,7 +34,7 @@ public class ToolTipManager : MonoBehaviour {
 	}
 
 	IEnumerator Off() {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(2f);
 		canvas.gameObject.SetActive(false);
 		
 	}

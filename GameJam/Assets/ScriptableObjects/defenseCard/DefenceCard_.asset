@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 1 di difesa massima Permanente
   cardName: Droga
   type: 3
-  maximumOwned: 0
+  maximumOwned: 6
   uid: c950f6d6a3adee34e9e195716045a336
   anim: block
   percent: 0

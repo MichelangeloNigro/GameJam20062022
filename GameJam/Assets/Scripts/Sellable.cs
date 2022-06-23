@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Sellable : UiCardDrawer, IPointerEnterHandler,IPointerExitHandler {
   public int cost;
+  //public  
   public void OnPointerEnter(PointerEventData eventData)
   {
     ToolTipManager.instace.ShowToolTip(card.cardName,card.description+" This card costs: "+cost);

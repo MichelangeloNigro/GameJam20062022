@@ -16,7 +16,7 @@ MonoBehaviour:
   description: rida 10 ps
   cardName: Loda il Sole
   type: 1
-  maximumOwned: 0
+  maximumOwned: 10
   uid: 36a4cf9260ff34d47bf4efb4b275eb95
   anim: drink
   amount: 10
