@@ -19,5 +19,5 @@ MonoBehaviour:
   maximumOwned: 0
   uid: 55f4f3f5e2f1d3346bb2eeb6c268a416
   damage: 5
-  weaponModel: {fileID: 0}
-  sound: {fileID: 0}
+  weaponModel: {fileID: 1457395337348762, guid: 0a3c712afb30af7439c380abd17a6681, type: 3}
+  sound: {fileID: 8300000, guid: f70797e08545665469023336d891b2c5, type: 3}
