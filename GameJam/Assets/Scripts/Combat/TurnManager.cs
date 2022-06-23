@@ -152,6 +152,7 @@ public class TurnManager : MonoBehaviour {
             // foreach (var VARIABLE in CardManager.Instance.Deck) {
             //     VARIABLE.quantityInDeck = 0;
             // }
+            GameManager.Instance.cardsInDeck = new CardQuantity(); 
             CardManager.Instance.Deck = null;
             StartCoroutine(FadeManager.Instance.ReloadScene());
         }
