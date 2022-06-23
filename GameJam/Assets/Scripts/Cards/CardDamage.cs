@@ -6,7 +6,7 @@ public class CardDamage : AttackCard
 {
 	public override void Use(ActorWorld chooser, ActorWorld target) {
 		base.Use(chooser, target);
-		
+						
 		chooser.animator.SetTrigger("shooting");
 		Destroy(chooser.currWeapon);
 		chooser.currWeapon=Instantiate(weaponModel, chooser.handR);

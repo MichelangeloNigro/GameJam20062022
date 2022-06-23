@@ -23,6 +23,7 @@ public class ActorWorld : MonoBehaviour {
     public Action<ActorWorld, GeneralCard> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;
     public Action<ActorWorld> OnDeath;
+    public Action<ActorWorld> OnFinishDeathAnimation;
     public Action<ActorWorld> OnFinishedTurn;
     public Action OnCardUsed;
 
@@ -132,11 +133,16 @@ public class ActorWorld : MonoBehaviour {
         UiManager.Instance.setLife(currentHealth,maxHealth,lifebar);
         if (currentHealth <= 0) {
             Die();
+            animator.SetTrigger("Death");
         }
     }
 
     private void Die() {
         OnDeath?.Invoke(this);
+    }
+
+    private void FinishAnimationDie() {
+        OnFinishDeathAnimation?.Invoke(this);
     }
 
     #endregion

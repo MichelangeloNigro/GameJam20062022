@@ -73,6 +73,7 @@ public class TurnManager : MonoBehaviour {
         actor.OnCardSelected += OnCardSelected;
         actor.OnTargetSelected += OnTargetSelected;
         actor.OnDeath += OnActorDeath;
+        actor.OnFinishDeathAnimation += OnFinishDeathAnim;
         actor.OnFinishedTurn += PassTurn;
         OnActorSubscribed?.Invoke(actor);
     }
@@ -126,9 +127,6 @@ public class TurnManager : MonoBehaviour {
             return;
         }
         
-        if (enemies.Count == 0) {
-            OnFinishCombat?.Invoke();
-        }
         UiManager.Instance.StopShow();
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
@@ -150,11 +148,19 @@ public class TurnManager : MonoBehaviour {
         actors.Remove(actor);
         if (actor != playerActor) {
             enemies.Remove(actor);
+        }
+
+    }
+
+    private void OnFinishDeathAnim(ActorWorld actor) {
+        if (actor != playerActor) {
             GameManager.Instance.AddGold(actor.goldDrop);
             Instantiate(moneyVfx, actor.transform.position,actor.transform.rotation,FindObjectOfType<TileManager>().currentTiles[0].transform);
             UiManager.Instance.StartCoroutine( UiManager.Instance.uiGoldOn(actor.goldDrop));
             Destroy(actor.gameObject);
-           
+            if (enemies.Count == 0) {
+                OnFinishCombat?.Invoke();
+            }
         }
         else {
             // foreach (var VARIABLE in CardManager.Instance.Deck) {
@@ -163,5 +169,6 @@ public class TurnManager : MonoBehaviour {
             CardManager.Instance.Deck = null;
             StartCoroutine(FadeManager.Instance.ReloadScene());
         }
+        
     }
 }
