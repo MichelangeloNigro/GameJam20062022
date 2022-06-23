@@ -39,6 +39,7 @@ public class TurnManager : MonoBehaviour {
     public GeneralCard selectedCard;
     public GameObject cardUI;
 
+    
     private void Awake() {
         Instance = this;
         battleManager.Init();
@@ -123,7 +124,7 @@ public class TurnManager : MonoBehaviour {
         if (enemies.Count == 0) {
             OnFinishCombat?.Invoke();
         }
-        
+        UiManager.Instance.StopShow();
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
         turnPhase = TurnPhase.CardSelection;

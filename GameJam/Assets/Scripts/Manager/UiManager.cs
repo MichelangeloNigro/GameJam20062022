@@ -23,6 +23,7 @@ public class UiManager : SingletonDDOL<UiManager> {
   public TMP_Text lifeRemain;
   public TMP_Text goldUi;
   public TMP_Text feedbackText;
+  public TMP_Text enemyAction;
 
   public IEnumerator uiGoldOn(int i) {
     goldUi.text = $"+{i}";
@@ -116,6 +117,14 @@ public class UiManager : SingletonDDOL<UiManager> {
 
   public void StopShow() {
     feedbackText.gameObject.SetActive(false);
+    enemyAction.gameObject.SetActive(false);
+    
+  }
+
+  public void ShowEnemyAction(string text) {
+    enemyAction.gameObject.SetActive(true);
+    enemyAction.text = text;
+    
   }
 
 

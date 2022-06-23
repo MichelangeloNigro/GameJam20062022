@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Heal_
   m_EditorClassIdentifier: 
   image: {fileID: -592490805, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
-  description: Ah mi sento molto meglio ora
-  cardName: Succo
+  description: rida 10 ps
+  cardName: Loda il Sole
   type: 1
   maximumOwned: 0
   uid: 36a4cf9260ff34d47bf4efb4b275eb95

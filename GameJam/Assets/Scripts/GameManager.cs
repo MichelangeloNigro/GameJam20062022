@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime.Tasks.Unity.UnityPlayerPrefs;
 using Riutilizzabile;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : SingletonDDOL<GameManager> , ISavable {
@@ -13,6 +14,7 @@ public class GameManager : SingletonDDOL<GameManager> , ISavable {
     public int money;
     public Dictionary<GeneralCard, int> cardsInDeck = new();
     public GameObject bloodVFX;
+    public TMP_Text goldCanvas;
 
     private void OnEnable() {
         // foreach (var card in unlockedCards) {
@@ -55,5 +57,9 @@ public class GameManager : SingletonDDOL<GameManager> , ISavable {
             SaveAndLoad.Instance.ToBeSaved.cardNumber.Add(VARIABLE.Value);
         }
         
+    }
+
+    private void Update() {
+        goldCanvas.text = "x " + money;
     }
 }

@@ -38,6 +38,10 @@ public abstract class GeneralCard : ScriptableObject {
 		this.chooser = chooser;
 		this.target = target;
 		chooser.OnCardUsed += CardEffect;
+		if (!chooser.isPlayer) {
+			string text = "nemico usa " + cardName;
+			UiManager.Instance.ShowEnemyAction(text);
+		}
 	}
 
 	protected virtual void CardEffect() {

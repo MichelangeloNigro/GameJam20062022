@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Damage_
   m_EditorClassIdentifier: 
   image: {fileID: 566447732, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
-  description: che male fai x danni
-  cardName: che danno
+  description: fa 5 danni
+  cardName: Pistola
   type: 2
   maximumOwned: 0
   uid: e06d644409b2ce54d98df50e4b7f4f1b
