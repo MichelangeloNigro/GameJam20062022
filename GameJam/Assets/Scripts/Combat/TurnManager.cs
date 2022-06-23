@@ -112,6 +112,7 @@ public class TurnManager : MonoBehaviour {
                     Destroy(cardUI);
                 }
             }
+            turnPhase = TurnPhase.NotInBattle;
         }
         else {
             Debug.Log("wrong");
@@ -130,7 +131,9 @@ public class TurnManager : MonoBehaviour {
         UiManager.Instance.StopShow();
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
-        turnPhase = TurnPhase.CardSelection;
+        if (enemies.Count != 0) {
+            turnPhase = TurnPhase.CardSelection;
+        }
         currentActor.Draw();
         if (currentActor != playerActor) {
             OnTurnPassed?.Invoke(currentActor);
@@ -156,7 +159,6 @@ public class TurnManager : MonoBehaviour {
             CardManager.Instance.Deck = null;
             StartCoroutine(FadeManager.Instance.ReloadScene());
         }
-
     }
 
     private void OnFinishDeathAnim(ActorWorld actor) {
