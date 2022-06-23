@@ -18,5 +18,6 @@ MonoBehaviour:
   type: 1
   maximumOwned: 0
   uid: f76ae2795293ebe459431cfc0421905a
+  anim: drink
   amount: 5
   canUnstunnedActor: 0
