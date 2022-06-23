@@ -11,6 +11,8 @@ using Random = UnityEngine.Random;
 public class ActorWorld : MonoBehaviour {
     [SerializeField, ReadOnly] private float maxHealth;
     [SerializeField, ReadOnly] private float currentHealth;
+    public float MaxHealth => maxHealth;
+    public float CurrentHealth => currentHealth;
     private List<GeneralCard> deck = new();
     public List<GeneralCard> tempDeck = new();
     public List<GeneralCard> hand;

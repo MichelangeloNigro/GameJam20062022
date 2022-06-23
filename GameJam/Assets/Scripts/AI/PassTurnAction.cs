@@ -2,7 +2,7 @@ using UnityEngine;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
-public class TargetPlayerAction : Action
+public class PassTurnAction : Action
 {
 	private ActorWorld actorWorld;
 	
@@ -12,7 +12,7 @@ public class TargetPlayerAction : Action
 
 	public override TaskStatus OnUpdate()
 	{
-		actorWorld.SelectTarget(TurnManager.Instance.PlayerActor);
+		actorWorld.FinishTurn();
 		return TaskStatus.Success;
 	}
 }
