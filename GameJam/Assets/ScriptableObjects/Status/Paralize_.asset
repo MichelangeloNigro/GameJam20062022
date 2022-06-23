@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec54ef608924fa24691501ed97ef4179, type: 3}
   m_Name: Paralize_
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
   effectTurns: 1

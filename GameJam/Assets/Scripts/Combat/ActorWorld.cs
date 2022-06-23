@@ -29,6 +29,7 @@ public class ActorWorld : MonoBehaviour {
     public Action<ActorWorld> OnFinishDeathAnimation;
     public Action<ActorWorld> OnFinishedTurn;
     public Action OnCardUsed;
+    public GameObject statusContent;
 
     [NonSerialized] public Animator animator;
 
@@ -41,6 +42,7 @@ public class ActorWorld : MonoBehaviour {
     }
 
     private void PopulateHand() {
+        hand.Clear();
         for (int i = 0; i < maxCardsInHand; i++) {
             int temp = Random.Range(0, tempDeck.Count);
             if (isPlayer) {
@@ -71,6 +73,7 @@ public class ActorWorld : MonoBehaviour {
         currentHealth = actor.baseHealth;
         if (isPlayer) {
             lifebar = GameObject.FindWithTag("Player").GetComponent<Image>();
+            statusContent = GameObject.FindWithTag("status");
             if (CardManager.Instance.Deck.Count < actor.maxCardsInHand) {
                 maxCardsInHand = CardManager.Instance.Deck.Count;
             }
@@ -96,6 +99,7 @@ public class ActorWorld : MonoBehaviour {
         TurnManager.Instance.Subscribe(this);
         TurnManager.Instance.OnTurnPassed += ExecuteBehavior;
         TurnManager.Instance.OnFinishCombat += RestockDeck;
+        TurnManager.Instance.OnFinishCombat += PopulateHand;
     }
 
 
@@ -103,6 +107,7 @@ public class ActorWorld : MonoBehaviour {
     private void OnDisable() {
         TurnManager.Instance.OnTurnPassed -= ExecuteBehavior;
         TurnManager.Instance.OnFinishCombat -= RestockDeck;
+        TurnManager.Instance.OnFinishCombat -= PopulateHand;
     }
 
     public void SelectCard(GeneralCard card) {
@@ -139,10 +144,11 @@ public class ActorWorld : MonoBehaviour {
     private void RestockDeck() {
         if (isPlayer) {
             tempDeck.Clear();
-            tempDeck.AddRange(deck);
-            foreach (var card in hand) {
-                tempDeck.Remove(card);
-            }
+           tempDeck.AddRange(deck);
+           UiManager.Instance.handContent.transform.Clear();
+           // foreach (var card in hand) {
+           //     tempDeck.Remove(card);
+           // }
         }
     }
     

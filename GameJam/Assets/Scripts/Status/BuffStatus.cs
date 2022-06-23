@@ -8,6 +8,7 @@ public class BuffStatus : GenericStatus {
 	public bool isForDefense;
 	
 	public override void ApplyStatus(ActorWorld target, ActorWorld chooser,int bonus=0) {
+		base.ApplyStatus(target,chooser,bonus);
 		if (isForAttack && isForDefense) {
 			target.managerStatus.SetStatus(effectTurns,(int) StatusName.AtkBouns,bonus);
 			target.managerStatus.SetStatus(effectTurns,(int) StatusName.DefBonus,bonus);

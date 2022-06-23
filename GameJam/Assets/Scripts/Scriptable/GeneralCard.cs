@@ -36,7 +36,6 @@ public abstract class GeneralCard : ScriptableObject {
 #endif
 	}
 	public virtual void Use(ActorWorld chooser, ActorWorld target) {
-		Debug.Log(anim);
 		this.chooser = chooser;
 		this.target = target;
 		chooser.OnCardUsed += CardEffect;
@@ -45,7 +44,6 @@ public abstract class GeneralCard : ScriptableObject {
 			UiManager.Instance.ShowEnemyAction(text);
 		}
 		if (anim!="") {
-			Debug.Log("anim");
 			chooser.animator.SetTrigger(anim);
 		}
 	}

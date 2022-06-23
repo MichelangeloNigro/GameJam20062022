@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2974232f7a674d199f4c1cf46378c3bc, type: 3}
   m_Name: AtkUp
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
   effectTurns: 2
   isForAttack: 1
   isForDefense: 0

@@ -9,12 +9,10 @@ public class CardDamage : AttackCard
 		Destroy(chooser.currWeapon);
 		chooser.currWeapon=Instantiate(weaponModel, chooser.handR);
 		GameManager.Instance.StartCoroutine(spawnVfx(chooser,target));
-		
 	}
 
 	public IEnumerator spawnVfx(ActorWorld self, ActorWorld enemy) {
 		yield return new WaitForSeconds(1.4f);
-		Debug.Log(self.currWeapon);
 		if (self.currWeapon.GetComponentInChildren<ParticleSystem>(true)) {
 			self.currWeapon.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
 		}
@@ -31,11 +29,12 @@ public class CardDamage : AttackCard
 		if (damageTotal < 0) {
 			damageTotal = 0;
 		}
+		UiManager.Instance.StopShowEnemy();
+		UiManager.Instance.ShowFeedBack($"fa {damageTotal} danni!");
 		target.ModifyHealth(-damageTotal);
 		if (status != null) {
 			status.ApplyStatus(target,chooser,0);
 		}
 		chooser.transform.LookAt(target.transform, Vector3.up);
-		Debug.Log("damage"+damage);
 	}
 }

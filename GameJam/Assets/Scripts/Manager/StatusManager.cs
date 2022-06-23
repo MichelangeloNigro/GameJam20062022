@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum StatusName {
 	Paralize,
@@ -19,7 +19,7 @@ public class StatusManager : MonoBehaviour {
 	public void SetStatus(int numberOfTurns,int listNumber,int bonus) {
 		statusList[listNumber].isAfflicted = true;
 		statusList[listNumber].numberOfTurnAfflicted = numberOfTurns;
-		
+		statusList[listNumber].Draw(currentActor);
 		if (listNumber == (int) (StatusName.AtkBouns)) {
 			currentActor.extraDamage = bonus;
 		}
@@ -54,6 +54,7 @@ public class StatusManager : MonoBehaviour {
 	private void CheckIfEndStatus() {
 		foreach (var status in statusList) {
 			if (status.numberOfTurnAfflicted <= 0) {
+				status.DeleteTooltip();
 				status.isAfflicted = false;
 				status.numberOfTurnAfflicted = 0;
 				var indx=statusList.IndexOf(status);
