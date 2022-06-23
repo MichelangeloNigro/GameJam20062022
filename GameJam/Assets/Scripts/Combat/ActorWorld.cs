@@ -20,7 +20,8 @@ public class ActorWorld : MonoBehaviour {
     public int goldDrop;
     public Transform handR;
     public GameObject currWeapon;
-
+    public int defense;
+    public int extraDamage;
     public Action<ActorWorld, GeneralCard> OnCardSelected;
     public Action<ActorWorld, ActorWorld> OnTargetSelected;
     public Action<ActorWorld> OnDeath;

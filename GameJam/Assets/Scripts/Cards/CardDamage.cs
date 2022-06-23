@@ -27,9 +27,13 @@ public class CardDamage : AttackCard
 
 	protected override void CardEffect() {
 		base.CardEffect();
-		target.ModifyHealth(-damage);
+		var damageTotal = (damage + chooser.extraDamage - target.defense);
+		if (damageTotal < 0) {
+			damageTotal = 0;
+		}
+		target.ModifyHealth(-damageTotal);
 		if (status != null) {
-			status.ApplyStatus(target,chooser);
+			status.ApplyStatus(target,chooser,0);
 		}
 		chooser.transform.LookAt(target.transform, Vector3.up);
 		Debug.Log("damage"+damage);
