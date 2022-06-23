@@ -85,13 +85,14 @@ public class ActorWorld : MonoBehaviour {
         behaviorTree = GetComponent<BehaviorTree>();
         TurnManager.Instance.Subscribe(this);
         TurnManager.Instance.OnTurnPassed += ExecuteBehavior;
-        
+        TurnManager.Instance.OnFinishCombat += RestockDeck;
     }
 
 
 
     private void OnDisable() {
         TurnManager.Instance.OnTurnPassed -= ExecuteBehavior;
+        TurnManager.Instance.OnFinishCombat -= RestockDeck;
     }
 
     public void SelectCard(GeneralCard card) {
@@ -123,6 +124,16 @@ public class ActorWorld : MonoBehaviour {
 
     public void UseCard() {
         OnCardUsed?.Invoke();
+    }
+
+    private void RestockDeck() {
+        if (isPlayer) {
+            tempDeck.Clear();
+            tempDeck.AddRange(deck);
+            foreach (var card in hand) {
+                tempDeck.Remove(card);
+            }
+        }
     }
     
     #endregion

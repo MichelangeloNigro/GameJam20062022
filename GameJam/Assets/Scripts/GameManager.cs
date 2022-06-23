@@ -14,9 +14,8 @@ public class GameManager : SingletonDDOL<GameManager> , ISavable {
     public int money;
     public Dictionary<GeneralCard, int> cardsInDeck = new();
     public GameObject bloodVFX;
-    public TMP_Text goldCanvas;
 
-    private void OnEnable() {
+    private void Start() {
         // foreach (var card in unlockedCards) {
         //     cardsInDeck.Add(card.Key, 0);
         // }
@@ -59,7 +58,5 @@ public class GameManager : SingletonDDOL<GameManager> , ISavable {
         
     }
 
-    private void Update() {
-        goldCanvas.text = "x " + money;
-    }
+   
 }
