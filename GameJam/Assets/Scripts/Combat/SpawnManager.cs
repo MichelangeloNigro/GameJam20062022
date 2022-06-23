@@ -1,6 +1,5 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour {
     [SerializeField] private Actor player;
@@ -38,13 +37,16 @@ public class SpawnManager : MonoBehaviour {
     }
     
     public void SpawnEnemies() {
-        for (int i = 0; i < enemies.Length; i++) {
-            var spawnedActor = Instantiate(enemies[i].actorPrefab, spawnPoints[i]);
+        int numOfEnemies = Random.Range(1, spawnPoints.Length + 1);
+        for (int i = 0; i < 3; i++) {
+            var ranIndex = Random.Range(0, enemies.Length);
+            var enemy = enemies[ranIndex].actorPrefab;
+            var spawnedActor = Instantiate(enemy, spawnPoints[i]);
             var actorWorld = spawnedActor.GetComponent<ActorWorld>();
             if (!actorWorld) {
                 actorWorld = spawnedActor.AddComponent<ActorWorld>();
             }
-            actorWorld.Init(enemies[i]);
+            actorWorld.Init(enemies[ranIndex]);
         }
     }
 }

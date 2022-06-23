@@ -24,10 +24,11 @@ MonoBehaviour:
         Card Type","Instant":true,"CardTypecardType":"HealthCard"},{"Type":"CheckEnemiesHealth","NodeData":{"Offset":"(-132.925049,202.919708)"},"ID":4,"Name":"Check
         Enemies Health","Instant":true,"SinglepercentageTreshold":50},{"Type":"SelectRandomCardOfType","NodeData":{"Offset":"(55.23278,200.288177)"},"ID":5,"Name":"Select
         Random Card Of Type","Instant":true,"CardTypecardType":"HealthCard"},{"Type":"SelectLowestHealthEnemy","NodeData":{"Offset":"(257.133362,202.115662)"},"ID":6,"Name":"Select
-        Lowest Health Enemy","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(307.22522,259.886749)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasCardType","NodeData":{"Offset":"(-132.858826,129.88678)"},"ID":8,"Name":"Has
-        Card Type","Instant":true,"CardTypecardType":"AttackCard"},{"Type":"SelectRandomCardOfType","NodeData":{"Offset":"(32.8550453,139.88678)"},"ID":9,"Name":"Select
-        Random Card Of Type","Instant":true,"CardTypecardType":"AttackCard"},{"Type":"TargetPlayerAction","NodeData":{"Offset":"(214.284058,144.376587)"},"ID":10,"Name":"Target
-        Player Action","Instant":true}]}]}}'
+        Lowest Health Enemy","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(307.22522,259.886749)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"HasCardType","NodeData":{"Offset":"(-164.1088,145.511765)"},"ID":8,"Name":"Has
+        Card Type","Instant":true,"CardTypecardType":"AttackCard"},{"Type":"SelectRandomCardOfType","NodeData":{"Offset":"(1.60506153,155.511765)"},"ID":9,"Name":"Select
+        Random Card Of Type","Instant":true,"CardTypecardType":"AttackCard"},{"Type":"TargetPlayerAction","NodeData":{"Offset":"(183.034088,160.001572)"},"ID":10,"Name":"Target
+        Player Action","Instant":true}]},{"Type":"PassTurnAction","NodeData":{"Offset":"(554.229736,241.77092)"},"ID":11,"Name":"Pass
+        Turn Action","Instant":true}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
