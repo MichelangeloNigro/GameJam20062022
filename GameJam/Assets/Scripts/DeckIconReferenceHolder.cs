@@ -11,14 +11,14 @@ public class DeckIconReferenceHolder : MonoBehaviour {
 
 	private void Update() {
 		name.text = card.cardName;
-		quantity.text = $"X {card.quantityInDeck}";
+		quantity.text = $"X {GameManager.Instance.cardsInDeck[card]}";
 	}
 
 	public void onDeselectCard() {
-		card.quantityInDeck--;
-		card.quantityInDeck = Mathf.Clamp(card.quantityInDeck, 0, 100);
+		GameManager.Instance.cardsInDeck[card]--;
+		GameManager.Instance.cardsInDeck[card] = Mathf.Clamp(GameManager.Instance.cardsInDeck[card], 0, 100);
 		CardManager.Instance.Deck.Remove(card);
-		if (card.quantityInDeck==0) {
+		if (GameManager.Instance.cardsInDeck[card]==0) {
 			Destroy(this.gameObject);
 		}
 		else {

@@ -12,7 +12,7 @@ public class ToolTipManager : MonoBehaviour {
 	public static ToolTipManager instace;
 
 	private void Start() {
-		canvas.gameObject.SetActive(false);
+		//canvas.gameObject.SetActive(false);
 	}
 
 	private void Awake() {

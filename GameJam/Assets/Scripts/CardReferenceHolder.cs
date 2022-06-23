@@ -9,7 +9,7 @@ public class CardReferenceHolder : UiCardDrawer {
 	
 	
 	private void Update() {
-		if (card.quantityInDeck!=card.quantityUnlocked) {
+		if (GameManager.Instance.unlockedCards[card]!=GameManager.Instance.cardsInDeck[card]) {
 			GetComponent<Button>().interactable = true;
 		}
 		else {
@@ -18,12 +18,11 @@ public class CardReferenceHolder : UiCardDrawer {
 	}
 
 	public void OnCardClick() {
-		if (card.quantityInDeck==0) {
+		if (GameManager.Instance.cardsInDeck[card]==0) {
 			var temp=GameObject.Instantiate(GameManager.Instance.deckButtonPrefab,UiManager.Instance.deckSelectedContent.transform);
 			temp.GetComponent<DeckIconReferenceHolder>().card = card;
 		}
-		card.quantityInDeck++;
+		GameManager.Instance.AddCardToDeck(card);
 		CardManager.Instance.Deck.Add(card);
-
 	}
 }

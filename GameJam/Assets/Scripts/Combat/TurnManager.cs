@@ -33,9 +33,10 @@ public class TurnManager : MonoBehaviour {
     
     private ActorWorld playerActor;
     public ActorWorld PlayerActor => playerActor;
-    public int goldRecived;
+    private int goldRecived;
+
+    public GeneralCard selectedCard;
     public GameObject cardUI;
-    public GameObject moneyVfx;
 
     private void Awake() {
         Instance = this;
@@ -84,6 +85,7 @@ public class TurnManager : MonoBehaviour {
     private void OnCardSelected(ActorWorld actor, GeneralCard card) {
         if (turnPhase == TurnPhase.CardSelection && actor == currentActor) {
             turnPhase = TurnPhase.TargetSelection;
+            selectedCard = card;
             OnCardSuccessfullySelected?.Invoke(card);
         }
     }
@@ -91,6 +93,7 @@ public class TurnManager : MonoBehaviour {
     private void OnTargetSelected(ActorWorld chooser, ActorWorld target) {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
             OnTargetSuccessfullySelected?.Invoke(chooser, target);
+            chooser.RemoveCardFromHand(selectedCard);
             if (cardUI!=null) {
                 Destroy(cardUI);
             }
@@ -116,6 +119,7 @@ public class TurnManager : MonoBehaviour {
         currentIndex = ExtensionMethods.Cycle(currentIndex + 1, 0, actors.Count);
         currentActor = actors[currentIndex];
         turnPhase = TurnPhase.CardSelection;
+        currentActor.Draw();
         if (currentActor != playerActor) {
             OnTurnPassed?.Invoke(currentActor);
         }
@@ -131,20 +135,12 @@ public class TurnManager : MonoBehaviour {
         actor.OnDeath -= OnActorDeath;
         actors.Remove(actor);
         if (actor != playerActor) {
-            Debug.Log("enemy");
             enemies.Remove(actor);
-            goldRecived += actor.goldDrop;
-            Instantiate(moneyVfx, actor.transform.position,actor.transform.rotation,FindObjectOfType<TileManager>().currentTiles[0].transform);
-            UiManager.Instance.StartCoroutine( UiManager.Instance.uiGoldOn(actor.goldDrop));
             Destroy(actor.gameObject);
         }
         else {
             GameManager.Instance.AddGold(goldRecived);
             goldRecived = 0;
-            foreach (var VARIABLE in CardManager.Instance.Deck) {
-                VARIABLE.quantityInDeck = 0;
-            }
-            CardManager.Instance.Deck = null;
             StartCoroutine(FadeManager.Instance.ReloadScene());
         }
     }
