@@ -38,7 +38,7 @@ public class SpawnManager : MonoBehaviour {
     
     public void SpawnEnemies() {
         int numOfEnemies = Random.Range(1, spawnPoints.Length + 1);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < numOfEnemies; i++) {
             var ranIndex = Random.Range(0, enemies.Length);
             var enemy = enemies[ranIndex].actorPrefab;
             var spawnedActor = Instantiate(enemy, spawnPoints[i]);
