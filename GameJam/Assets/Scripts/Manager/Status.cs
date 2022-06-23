@@ -6,7 +6,9 @@ public class Status {
 	public void Paralize(ActorWorld currentActor) {
 		currentActor.FinishTurn();
 	}
+
+
 	
-	
-	
+
+
 }

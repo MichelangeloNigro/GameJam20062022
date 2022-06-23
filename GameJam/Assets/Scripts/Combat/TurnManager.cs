@@ -86,20 +86,30 @@ public class TurnManager : MonoBehaviour {
     }
 
     private void OnCardSelected(ActorWorld actor, GeneralCard card) {
+        
         if (turnPhase == TurnPhase.CardSelection && actor == currentActor) {
-            turnPhase = TurnPhase.TargetSelection;
-            if (actor == playerActor) {
-                UiManager.Instance.ShowFeedBack("Scegli un Bersaglio");
+            if (card.type != CardType.AttackCard && actor==playerActor) {
+                turnPhase = TurnPhase.TargetSelection;
+                selectedCard = card;
+                OnCardSuccessfullySelected?.Invoke(card);
+                actor.SelectTarget(actor);
             }
-            selectedCard = card;
-            OnCardSuccessfullySelected?.Invoke(card);
+            else {
+
+                turnPhase = TurnPhase.TargetSelection;
+                if (actor == playerActor) {
+                    UiManager.Instance.ShowFeedBack("Scegli un Bersaglio");
+                }
+                selectedCard = card;
+                OnCardSuccessfullySelected?.Invoke(card);
+            }
         }
     }
 
     private void OnTargetSelected(ActorWorld chooser, ActorWorld target) {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
             if (BattleManager.instance.card.type == CardType.AttackCard && target==currentActor) {
-                Debug.Log("sbagliato");
+                
             }
             else {
                 OnTargetSuccessfullySelected?.Invoke(chooser, target);

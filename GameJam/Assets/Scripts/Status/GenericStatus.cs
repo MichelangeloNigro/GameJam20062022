@@ -7,7 +7,7 @@ public abstract class GenericStatus : ScriptableObject {
 	public Sprite sprite;
 	public int effectTurns;
 
-	public virtual void ApplyStatus(ActorWorld target, ActorWorld chooser) {
+	public virtual void ApplyStatus(ActorWorld target, ActorWorld chooser,int bonus) {
 		
 	}
 

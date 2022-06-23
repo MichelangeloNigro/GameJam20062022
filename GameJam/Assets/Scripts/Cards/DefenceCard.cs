@@ -3,7 +3,23 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/Card/DefenceCard",fileName = "DefenceCard_")]
 public class DefenceCard : DefenseCard {
 
+	public int bonusAmount;
+	public bool isPermanent;
+	
 	public override void Use(ActorWorld chooser, ActorWorld target) {
-		target.ModifyHealth(percent);
+		base.Use(chooser, target);	
 	}
+	
+	
+	protected override void CardEffect() {
+		base.CardEffect();
+		if (isPermanent) {
+			chooser.defense += bonusAmount;
+		}
+		else {
+			status.ApplyStatus(target, chooser, bonusAmount);
+		}
+	}
+	
+	
 }
