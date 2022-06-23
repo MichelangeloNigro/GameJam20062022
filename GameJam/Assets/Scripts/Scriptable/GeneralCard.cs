@@ -21,6 +21,7 @@ public abstract class GeneralCard : ScriptableObject {
 	public CardType type;
 	public int maximumOwned;
 	public string uid;
+	public string anim;
 
 	protected ActorWorld chooser;
 	protected ActorWorld target;
@@ -35,12 +36,17 @@ public abstract class GeneralCard : ScriptableObject {
 #endif
 	}
 	public virtual void Use(ActorWorld chooser, ActorWorld target) {
+		Debug.Log(anim);
 		this.chooser = chooser;
 		this.target = target;
 		chooser.OnCardUsed += CardEffect;
 		if (!chooser.isPlayer) {
 			string text = "nemico usa " + cardName;
 			UiManager.Instance.ShowEnemyAction(text);
+		}
+		if (anim!="") {
+			Debug.Log("anim");
+			chooser.animator.SetTrigger(anim);
 		}
 	}
 

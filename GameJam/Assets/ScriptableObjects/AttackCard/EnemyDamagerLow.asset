@@ -18,6 +18,7 @@ MonoBehaviour:
   type: 2
   maximumOwned: 0
   uid: cbd356539bad7b545981b214a08fbaa6
+  anim: shooting
   damage: 1
   weaponModel: {fileID: 1191095969629160, guid: f8179cff3ce8de647b569f1f9f134767, type: 3}
   sound: {fileID: 8300000, guid: f70797e08545665469023336d891b2c5, type: 3}

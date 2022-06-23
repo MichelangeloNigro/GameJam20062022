@@ -579,7 +579,7 @@ MonoBehaviour:
   isPlayer: 0
   lifebar: {fileID: 3765642455774552118}
   goldDrop: 20
-  handR: {fileID: 8422523836473712566}
+  handR: {fileID: 2658356886610134312}
   currWeapon: {fileID: 0}
   managerStatus: {fileID: 4297169854096400453}
 --- !u!114 &4689768707023244726
@@ -2087,6 +2087,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7020497552216712745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2658356886610134312}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2658356886610134312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020497552216712745}
+  m_LocalRotation: {x: -0.48176345, y: 0.4817636, z: -0.51759434, w: 0.51759446}
+  m_LocalPosition: {x: 0.39482656, y: 0.058999892, z: 0.009261801}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1688118732593184384}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &7618489072956348305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,5 +2345,10 @@ GameObject:
 --- !u!4 &1687981903882828176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4301369446033440, guid: e85f10072d335224984d9b8ae2e93843, type: 3}
+  m_PrefabInstance: {fileID: 1685369406501802416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1688118732593184384 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4157806026420016, guid: e85f10072d335224984d9b8ae2e93843, type: 3}
   m_PrefabInstance: {fileID: 1685369406501802416}
   m_PrefabAsset: {fileID: 0}

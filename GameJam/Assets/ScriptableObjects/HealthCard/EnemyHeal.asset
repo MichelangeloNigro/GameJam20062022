@@ -17,6 +17,7 @@ MonoBehaviour:
   cardName: curaPiccola
   type: 1
   maximumOwned: 0
-  uid: b8a4b5606ba2d69469e0c7f9a2be1720
+  uid: becbcc1183b92ee4e9517362731badcb
+  anim: drink
   amount: 2
   canUnstunnedActor: 0

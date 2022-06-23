@@ -18,6 +18,7 @@ MonoBehaviour:
   type: 2
   maximumOwned: 0
   uid: 4f2ecb5f6e1cf874fb6a911ddc079973
+  anim: melee
   damage: 15
   weaponModel: {fileID: 1457395337348762, guid: 0a3c712afb30af7439c380abd17a6681, type: 3}
   sound: {fileID: 8300000, guid: ecb96ed11a7c6544e95e75812d0bb829, type: 3}
