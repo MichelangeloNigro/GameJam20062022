@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour {
-    private enum TurnPhase {
+    public enum TurnPhase {
         NotInBattle,
         CardSelection,
         TargetSelection
@@ -13,7 +13,7 @@ public class TurnManager : MonoBehaviour {
 
     public static TurnManager Instance;
 
-    [SerializeField, ReadOnly] private TurnPhase turnPhase;
+    [SerializeField, ReadOnly] public TurnPhase turnPhase;
     [SerializeField] private BattleManager battleManager;
     [SerializeField] private TileManager tileManager;
 
@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour {
     private List<ActorWorld> enemies = new();
     public List<ActorWorld> Enemies => enemies;
 
-    private ActorWorld currentActor;
+    public ActorWorld currentActor;
     [SerializeField, ReadOnly] private int currentIndex;
     
     private ActorWorld playerActor;
@@ -86,7 +86,6 @@ public class TurnManager : MonoBehaviour {
     }
 
     private void OnCardSelected(ActorWorld actor, GeneralCard card) {
-        
         if (turnPhase == TurnPhase.CardSelection && actor == currentActor) {
             if (card.type != CardType.AttackCard && actor==playerActor) {
                 turnPhase = TurnPhase.TargetSelection;

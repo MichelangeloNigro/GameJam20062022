@@ -9,7 +9,7 @@ public class CardQuantity : UnitySerializedDictionary<GeneralCard, int> { }
 public class Actor : ScriptableObject {
     public float baseHealth;
     public GameObject actorPrefab;
-    public CardQuantity deck;
+    public List<CardQuantity> deck;
     public  int maxNumberOfCard=30;
     public int maxCardsInHand=5;
 }
