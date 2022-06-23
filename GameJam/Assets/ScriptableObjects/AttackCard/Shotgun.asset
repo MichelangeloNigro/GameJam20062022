@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fd324595d3eb747a0ccf0d30d2a960, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: "Quando un uomo con la pistola incontra un uomo con il fucile, l'uomo
-    con la pistola \xE8 un uomo morto"
+  image: {fileID: 1220304094, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
+  description: 'fa 10 danni
+
+'
   cardName: Shotgun
   type: 2
   maximumOwned: 0
   uid: a4109ac0ba2540841a96190599b1aa18
   damage: 10
+  weaponModel: {fileID: 0}
+  sound: {fileID: 0}

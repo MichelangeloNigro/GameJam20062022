@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5156e0ba99f88d240803692373d617dc, type: 3}
   m_Name: Cibo2
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: 
-  cardName: 
+  image: {fileID: -2147443889, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
+  description: recupera 5 ps
+  cardName: Bevuta
   type: 1
   maximumOwned: 0
   uid: f76ae2795293ebe459431cfc0421905a

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fd324595d3eb747a0ccf0d30d2a960, type: 3}
   m_Name: Sgabello
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: Uno sgabello? Meglio di nulla, almento potrai stordire il tuo nemico
+  image: {fileID: 1777179809, guid: 00df308cd674edb4eaebc6640e533564, type: 3}
+  description: fa 5 danni
   cardName: Sgabello
   type: 2
   maximumOwned: 0
   uid: fb591fcdfd1a7044db61160cc3f7d8d6
   damage: 5
+  weaponModel: {fileID: 0}
+  sound: {fileID: 0}
