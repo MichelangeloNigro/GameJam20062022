@@ -24,6 +24,8 @@ public class UiManager : SingletonDDOL<UiManager> {
   public TMP_Text goldUi;
   public TMP_Text feedbackText;
   public TMP_Text enemyAction;
+  public TMP_Text goldCanvas;
+
 
   public IEnumerator uiGoldOn(int i) {
     goldUi.text = $"+{i}";
@@ -71,6 +73,9 @@ public class UiManager : SingletonDDOL<UiManager> {
     //CardManager.Instance.getHand();
   }
   private void Update() {
+   
+    goldCanvas.text = "x " + GameManager.Instance.money;
+    
     if (CardManager.Instance.Deck!=null &&CardManager.Instance.Deck.Count <= 0) {
       doneButton.SetActive(false);
     }
