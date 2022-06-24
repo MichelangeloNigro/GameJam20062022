@@ -94,7 +94,8 @@ public class ActorWorld : MonoBehaviour {
 					tempDeck.Add(card.Key);
 				}
 			}
-			maxHealth += TileManager.instance.wave + lifeModifier;
+			var  value = (int) Random.Range(0, TileManager.instance.wave * lifeModifier+1);
+			maxHealth += value;
 			currentHealth = maxHealth;
 		}
 		PopulateHand();
