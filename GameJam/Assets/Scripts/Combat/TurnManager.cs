@@ -185,7 +185,7 @@ public class TurnManager : MonoBehaviour {
     private void OnFinishDeathAnim(ActorWorld actor) {
         if (actor != playerActor) {
             GameManager.Instance.AddGold(actor.goldDrop);
-            Instantiate(moneyVfx, actor.transform.position,actor.transform.rotation,FindObjectOfType<TileManager>().currentTiles[0].transform);
+            Instantiate(moneyVfx, actor.transform.position+Vector3.up,actor.transform.rotation);
             UiManager.Instance.StartCoroutine( UiManager.Instance.uiGoldOn(actor.goldDrop));
             Destroy(actor.gameObject);
             if (enemies.Count == 0) {

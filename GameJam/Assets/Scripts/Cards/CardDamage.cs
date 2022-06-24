@@ -19,7 +19,7 @@ public class CardDamage : AttackCard
 		AudioSource.PlayClipAtPoint(sound,Vector3.zero);
 		yield return new WaitForSeconds(0.4f);
 		if (enemy) {
-			Instantiate(GameManager.Instance.bloodVFX, enemy.transform.position,enemy.transform.rotation);
+			Instantiate(GameManager.Instance.bloodVFX, enemy.transform.position+Vector3.up,enemy.transform.rotation);
 			enemy.animator.SetTrigger("hitReaction");	
 			AudioSource.PlayClipAtPoint(grunt,Vector3.zero);
 
