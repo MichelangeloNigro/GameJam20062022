@@ -108,7 +108,7 @@ public class TurnManager : MonoBehaviour {
 
     private void OnTargetSelected(ActorWorld chooser, ActorWorld target) {
         if (turnPhase == TurnPhase.TargetSelection && chooser == currentActor) {
-            if (BattleManager.instance.card.type == CardType.AttackCard && target==currentActor) {
+            if (selectedCard.type == CardType.AttackCard && target==currentActor) { 
                 
             }
             else {
@@ -121,8 +121,9 @@ public class TurnManager : MonoBehaviour {
                 if (cardUI != null) {
                     Destroy(cardUI);
                 }
+                turnPhase = TurnPhase.NotInBattle;
             }
-            turnPhase = TurnPhase.NotInBattle;
+          
         }
         else {
             Debug.Log("wrong");

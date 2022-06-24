@@ -981,7 +981,6 @@ MonoBehaviour:
   description: {fileID: 2073630484}
   image: {fileID: 539752304}
   border: {fileID: 1012350682}
-  borders: []
   cost: 100
 --- !u!114 &175339299
 MonoBehaviour:
@@ -2497,7 +2496,6 @@ MonoBehaviour:
   description: {fileID: 1389324436}
   image: {fileID: 1150400325}
   border: {fileID: 1612075374}
-  borders: []
   cost: 700
 --- !u!114 &657810776
 MonoBehaviour:
@@ -2728,6 +2726,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695801658}
   m_CullTransparentMesh: 1
+--- !u!1 &707420279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 707420280}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &707420280
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707420279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8634757824912072311}
+  m_Father: {fileID: 8634757825780061582}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 727, y: 254}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &784260094
 GameObject:
   m_ObjectHideFlags: 0
@@ -4428,7 +4463,6 @@ MonoBehaviour:
   description: {fileID: 695801660}
   image: {fileID: 392428050}
   border: {fileID: 1004965412}
-  borders: []
   cost: 1000
 --- !u!114 &1155052709
 MonoBehaviour:
@@ -5766,7 +5800,6 @@ MonoBehaviour:
   description: {fileID: 1851254113}
   image: {fileID: 1008223434}
   border: {fileID: 168203355}
-  borders: []
   cost: 680
 --- !u!114 &1463367444
 MonoBehaviour:
@@ -6075,7 +6108,6 @@ MonoBehaviour:
   description: {fileID: 283449967}
   image: {fileID: 1098460957}
   border: {fileID: 325100807}
-  borders: []
   cost: 600
 --- !u!114 &1522959657
 MonoBehaviour:
@@ -7163,7 +7195,6 @@ MonoBehaviour:
   description: {fileID: 14942356}
   image: {fileID: 1954728113}
   border: {fileID: 1050540562}
-  borders: []
   cost: 300
 --- !u!114 &1925215021
 MonoBehaviour:
@@ -8654,7 +8685,6 @@ MonoBehaviour:
   description: {fileID: 1550286540651692254}
   image: {fileID: 1550286542181167458}
   border: {fileID: 663712710984466923}
-  borders: []
   cost: 300
 --- !u!114 &1550286541966083540
 MonoBehaviour:
@@ -9669,7 +9699,6 @@ MonoBehaviour:
   description: {fileID: 8634757825939982730}
   image: {fileID: 8634757824283850806}
   border: {fileID: 7737905623061514431}
-  borders: []
 --- !u!222 &6174647965288774940
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9695,7 +9724,6 @@ MonoBehaviour:
   description: {fileID: 7728099991238540910}
   image: {fileID: 270338435638872750}
   border: {fileID: 659847625994087517}
-  borders: []
 --- !u!114 &6265038315510018788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12099,17 +12127,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8634757824912072310}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8634757825780061582}
-  m_RootOrder: 9
+  m_Father: {fileID: 707420280}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 727, y: 254}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8634757824912072312
@@ -14724,7 +14752,7 @@ RectTransform:
   - {fileID: 8634757824409783129}
   - {fileID: 8634757826212096274}
   - {fileID: 8634757826085288620}
-  - {fileID: 8634757824912072311}
+  - {fileID: 707420280}
   - {fileID: 8634757824963108428}
   m_Father: {fileID: 4573671868800776318}
   m_RootOrder: 3
