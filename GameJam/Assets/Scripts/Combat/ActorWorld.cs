@@ -4,10 +4,11 @@ using BehaviorDesigner.Runtime;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class ActorWorld : MonoBehaviour {
+public class ActorWorld : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler {
 	[SerializeField, ReadOnly] private float maxHealth;
 	[SerializeField, ReadOnly] private float currentHealth;
 	public float MaxHealth => maxHealth;
@@ -180,4 +181,17 @@ public class ActorWorld : MonoBehaviour {
 
 	#endregion
 
+	public void OnPointerEnter(PointerEventData eventData) {
+		Debug.Log("hi");
+		if (TurnManager.Instance.turnPhase==TurnManager.TurnPhase.TargetSelection) {
+			GetComponentInChildren<Outline>().enabled = true;
+		}
+	}
+
+	public void OnPointerExit(PointerEventData eventData) {
+		Debug.Log("bye");
+		if ( TurnManager.Instance.turnPhase==TurnManager.TurnPhase.TargetSelection) {
+			GetComponentInChildren<Outline>().enabled = false;
+		}
+	}
 }
