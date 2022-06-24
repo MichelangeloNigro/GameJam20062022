@@ -211,6 +211,10 @@ public class TurnManager : MonoBehaviour {
             currentActor.arrowTurn.gameObject.SetActive(true);
 
         }
-       
+        if (turnPhase != TurnPhase.TargetSelection) {
+            foreach (var VARIABLE in enemies) {
+                VARIABLE.gameObject.GetComponentInChildren<Outline>().enabled = false;
+            }
+        }
     }
 }

@@ -1833,31 +1833,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4787176058424746, guid: e096edc26537c4a47a9eb53762df9026, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999969
       objectReference: {fileID: 0}
     - target: {fileID: 4787176058424746, guid: e096edc26537c4a47a9eb53762df9026, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.0004016427
       objectReference: {fileID: 0}
     - target: {fileID: 4787176058424746, guid: e096edc26537c4a47a9eb53762df9026, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.0014070714
       objectReference: {fileID: 0}
     - target: {fileID: 4787176058424746, guid: e096edc26537c4a47a9eb53762df9026, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.0020143331
       objectReference: {fileID: 0}
     - target: {fileID: 4787176058424746, guid: e096edc26537c4a47a9eb53762df9026, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -0.046
       objectReference: {fileID: 0}
     - target: {fileID: 4787176058424746, guid: e096edc26537c4a47a9eb53762df9026, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 0.161
       objectReference: {fileID: 0}
     - target: {fileID: 4787176058424746, guid: e096edc26537c4a47a9eb53762df9026, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -0.231
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e096edc26537c4a47a9eb53762df9026, type: 3}
@@ -2915,6 +2915,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4511597249398474, guid: f010edb98185581468023b9e14618699, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198426340534470772, guid: f010edb98185581468023b9e14618699, type: 3}
+      propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 199462573787893400, guid: f010edb98185581468023b9e14618699, type: 3}
