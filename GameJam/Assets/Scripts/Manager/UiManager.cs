@@ -30,7 +30,7 @@ public class UiManager : SingletonDDOL<UiManager> {
   public IEnumerator uiGoldOn(int i) {
     goldUi.text = $"+{i}";
     goldUi.gameObject.transform.parent.gameObject.SetActive(true);
-    yield return new WaitForSeconds(0.5f);
+    yield return new WaitForSeconds(0.8f);
     goldUi.gameObject.transform.parent.gameObject.SetActive(false);
   }
   private void Start() {

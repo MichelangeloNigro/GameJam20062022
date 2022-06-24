@@ -31,6 +31,7 @@ public class ActorWorld : MonoBehaviour {
 	public Action<ActorWorld> OnFinishedTurn;
 	public Action OnCardUsed;
 	public GameObject statusContent;
+	[SerializeField] private float lifeModifier=2;
 
 	[NonSerialized] public Animator animator;
 
@@ -93,7 +94,7 @@ public class ActorWorld : MonoBehaviour {
 					tempDeck.Add(card.Key);
 				}
 			}
-			maxHealth += TileManager.instance.wave * 2;
+			maxHealth += TileManager.instance.wave + lifeModifier;
 			currentHealth = maxHealth;
 		}
 		PopulateHand();
