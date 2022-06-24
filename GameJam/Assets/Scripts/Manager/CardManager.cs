@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Riutilizzabile;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardManager : SingletonDDOL<CardManager> {
     public List<GeneralCard> Deck=new List<GeneralCard>();
@@ -19,6 +20,8 @@ public class CardManager : SingletonDDOL<CardManager> {
     private int numberOfDefenseCard;
     private int numberOfHealthCard;
     private int numberOfBuffCard;
+
+    public List<Sprite> borders;
 
     public bool CheckIfCanAddCard() {
        return Deck.Count < maxNumberOfCard;
@@ -50,6 +53,26 @@ public class CardManager : SingletonDDOL<CardManager> {
             return false;
         }
         return numberOfBuffCard < maxNumberOfBuffCard;
+    }
+    
+    public void SetBorder(Image image, GeneralCard _card) {
+        switch (_card.type) {
+            case CardType.BuffCard:
+                image.sprite = borders[1];
+                break;
+            case CardType.HealthCard:
+                image.sprite = borders[2];
+                break;
+            case CardType.AttackCard:
+                image.sprite = borders[0];
+                break;
+            case CardType.DefenceCard:
+                image.sprite = borders[3];
+                break;
+            default:
+                image.sprite = borders[4];
+                break;
+        }
     }
 
     // public void getHand() {

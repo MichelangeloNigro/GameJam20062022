@@ -24,10 +24,14 @@ public class CardReferenceHolder : UiCardDrawer {
 		if (CardManager.Instance.CheckIfCanAddCard()) {
 			if (!GameManager.Instance.cardsInDeck.ContainsKey(card)) {
 				var temp = GameObject.Instantiate(GameManager.Instance.deckButtonPrefab, UiManager.Instance.deckSelectedContent.transform);
+			CardManager.Instance.SetBorder(temp.GetComponent<Image>(),card);
 				temp.GetComponent<DeckIconReferenceHolder>().card = card;
 			}
 			GameManager.Instance.AddCardToDeck(card);
 			CardManager.Instance.Deck.Add(card);
 		}
 	}
+	
+	
+	 
 }
