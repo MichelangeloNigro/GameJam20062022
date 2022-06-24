@@ -21,11 +21,13 @@ public class CardReferenceHolder : UiCardDrawer {
 	}
 
 	public void OnCardClick() {
-		if (!GameManager.Instance.cardsInDeck.ContainsKey(card)) {
-			var temp=GameObject.Instantiate(GameManager.Instance.deckButtonPrefab,UiManager.Instance.deckSelectedContent.transform);
-			temp.GetComponent<DeckIconReferenceHolder>().card = card;
+		if (CardManager.Instance.CheckIfCanAddCard()) {
+			if (!GameManager.Instance.cardsInDeck.ContainsKey(card)) {
+				var temp = GameObject.Instantiate(GameManager.Instance.deckButtonPrefab, UiManager.Instance.deckSelectedContent.transform);
+				temp.GetComponent<DeckIconReferenceHolder>().card = card;
+			}
+			GameManager.Instance.AddCardToDeck(card);
+			CardManager.Instance.Deck.Add(card);
 		}
-		GameManager.Instance.AddCardToDeck(card);
-		CardManager.Instance.Deck.Add(card);
 	}
 }

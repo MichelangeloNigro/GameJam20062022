@@ -21,7 +21,7 @@ public class CardManager : SingletonDDOL<CardManager> {
     private int numberOfBuffCard;
 
     public bool CheckIfCanAddCard() {
-       return numberOfCard < maxNumberOfCard;
+       return Deck.Count < maxNumberOfCard;
     }
     
     private bool CheckIfCanAddAttackCard() {
