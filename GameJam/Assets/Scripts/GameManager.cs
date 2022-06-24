@@ -5,6 +5,7 @@ using BehaviorDesigner.Runtime.Tasks.Unity.UnityPlayerPrefs;
 using Riutilizzabile;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonDDOL<GameManager> , ISavable {
     public CardQuantity unlockedCards;
@@ -58,5 +59,11 @@ public class GameManager : SingletonDDOL<GameManager> , ISavable {
         
     }
 
-   
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("Menu");
+
+        }
+    }
+
 }
