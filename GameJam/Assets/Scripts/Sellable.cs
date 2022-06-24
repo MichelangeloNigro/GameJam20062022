@@ -1,13 +1,21 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Sellable : UiCardDrawer, IPointerEnterHandler,IPointerExitHandler {
   public int cost;
+  public TMP_Text costText;
+
+  private void Update() {
+    costText.text =  "x " +  cost;
+  }
+
   //public  
   public void OnPointerEnter(PointerEventData eventData)
   {
-    ToolTipManager.instace.ShowToolTip(card.cardName,card.description+" This card costs: "+cost);
+    ToolTipManager.instace.ShowToolTip(card.cardName,card.description);
   }
   public void OnClick() {
     if (GameManager.Instance.money-cost>=0) {
