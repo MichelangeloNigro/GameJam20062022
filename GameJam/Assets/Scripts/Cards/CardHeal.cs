@@ -5,6 +5,7 @@ public class CardHeal : HealthCard
 {
 	public override void Use(ActorWorld chooser, ActorWorld target) {
 		base.Use(chooser, target);
+		AudioSource.PlayClipAtPoint(sound,Vector3.zero);
 	}
 
 	protected override void CardEffect() {

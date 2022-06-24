@@ -19,5 +19,6 @@ MonoBehaviour:
   maximumOwned: 3
   uid: e17a2432a1822d24996ad1e90e3f419f
   anim: powerUp
+  sound: {fileID: 8300000, guid: b79aa545a15132e4b90009d2b201bddc, type: 3}
   status: {fileID: 11400000, guid: f6ed8019bcf2e8a4db8911d783f4eef4, type: 2}
   bonusAmount: 10

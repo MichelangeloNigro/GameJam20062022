@@ -19,6 +19,7 @@ MonoBehaviour:
   maximumOwned: 6
   uid: c950f6d6a3adee34e9e195716045a336
   anim: block
+  sound: {fileID: 8300000, guid: 061ab20acb45c0e44a556cb1dfa458ae, type: 3}
   percent: 0
   status: {fileID: 11400000, guid: 9a1c138cef65db446a1f48581ac0c460, type: 2}
   bonusAmount: 1

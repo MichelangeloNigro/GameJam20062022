@@ -19,6 +19,8 @@ MonoBehaviour:
   maximumOwned: 0
   uid: 55f4f3f5e2f1d3346bb2eeb6c268a416
   anim: stabbing
+  sound: {fileID: 8300000, guid: f70797e08545665469023336d891b2c5, type: 3}
   damage: 5
   weaponModel: {fileID: 1457395337348762, guid: 0a3c712afb30af7439c380abd17a6681, type: 3}
-  sound: {fileID: 8300000, guid: f70797e08545665469023336d891b2c5, type: 3}
+  status: {fileID: 0}
+  grunt: {fileID: 8300000, guid: ee9e990c99fb6304daabcd81afe319a8, type: 3}

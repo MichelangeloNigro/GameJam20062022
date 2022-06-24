@@ -22,6 +22,8 @@ public abstract class GeneralCard : ScriptableObject {
 	public int maximumOwned;
 	public string uid;
 	public string anim;
+	public AudioClip sound;
+
 
 	protected ActorWorld chooser;
 	protected ActorWorld target;

@@ -7,7 +7,8 @@ public class DefenceCard : DefenseCard {
 	public bool isPermanent;
 	
 	public override void Use(ActorWorld chooser, ActorWorld target) {
-		base.Use(chooser, target);	
+		base.Use(chooser, target);
+		AudioSource.PlayClipAtPoint(sound,Vector3.zero);
 	}
 	
 	

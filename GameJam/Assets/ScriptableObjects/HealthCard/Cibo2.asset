@@ -19,5 +19,6 @@ MonoBehaviour:
   maximumOwned: 0
   uid: f76ae2795293ebe459431cfc0421905a
   anim: drink
+  sound: {fileID: 8300000, guid: c13a8d291b5ee7d4ca55f4506076a160, type: 3}
   amount: 5
   canUnstunnedActor: 0

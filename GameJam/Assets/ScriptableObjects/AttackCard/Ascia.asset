@@ -19,7 +19,8 @@ MonoBehaviour:
   maximumOwned: 7
   uid: 4f2ecb5f6e1cf874fb6a911ddc079973
   anim: melee
+  sound: {fileID: 8300000, guid: ecb96ed11a7c6544e95e75812d0bb829, type: 3}
   damage: 15
   weaponModel: {fileID: 1457395337348762, guid: 0a3c712afb30af7439c380abd17a6681, type: 3}
-  sound: {fileID: 8300000, guid: ecb96ed11a7c6544e95e75812d0bb829, type: 3}
   status: {fileID: 0}
+  grunt: {fileID: 8300000, guid: ee9e990c99fb6304daabcd81afe319a8, type: 3}
