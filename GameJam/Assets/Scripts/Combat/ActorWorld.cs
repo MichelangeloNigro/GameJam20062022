@@ -70,6 +70,7 @@ public class ActorWorld : MonoBehaviour {
 	#region Turn Related Methods
 
 	public void Init(Actor actor) {
+		GetComponentInChildren<Canvas>(true).worldCamera=Camera.main;
 		maxHealth = actor.baseHealth;
 		maxCardsInHand = actor.maxCardsInHand;
 		currentHealth = actor.baseHealth;
