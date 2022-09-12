@@ -26,7 +26,15 @@ public class FadeManager : SingletonDDOL<FadeManager> {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		//SaveAndLoad.Instance.StartCoroutine(SaveAndLoad.Instance.Load());
 	}
-	
-	
-	
+
+
+	public IEnumerator LoadNewScene(string nameScene) {
+		fade.GetComponent<RawImage>().CrossFadeAlpha(1, 1.2f, false);
+		
+		yield return new WaitForSeconds(1.5f);
+		SceneManager.LoadScene(nameScene);
+	}
+
+
+
 }
